@@ -24,7 +24,7 @@ local setup = {
     icons = {
         breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
         separator = "†", -- symbol used between a key and it's label
-        group = "",    -- symbol prepended to a group
+        group = "", -- symbol prepended to a group
     },
     popup_mappings = {
         scroll_down = "<c-d>", -- binding to scroll down inside the popup
@@ -70,7 +70,7 @@ local mappings = {
     c = Bind("Bdelete!", "Close Buffer"),
     C = Bind('silent! execute "%bd|e#|bd#"', "Close all buffers but this"),
     a = Bind("CodeActionMenu", "Code Actions"),
-    q = Bind("lua vim.diagnostic.setloclist()", "Quickfix"),
+    q = Bind("TroubleToggle", "Quickfix"),
     F = Bind("Telescope live_grep theme=ivy", "Find Text"),
     g = Bind("LazyGit", "LazyGit"),
     f = RunBind('telescope.builtin', "find_files(require('telescope.themes').get_dropdown({previewer = false}))",
