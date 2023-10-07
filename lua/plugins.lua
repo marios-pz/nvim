@@ -12,81 +12,54 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 local plugins = {
-    -- Colorschemes
-    'folke/tokyonight.nvim',
-    'rebelot/kanagawa.nvim',
+    {
+        "folke/tokyonight.nvim",
+        lazy = false, -- make sure we load this during startup if it is your main colorscheme
+        priority = 1000, -- make sure to load this before all the other start plugins
+        config = function()
+          vim.cmd([[colorscheme tokyonight-storm]])
+        end,
+    },
 
-    -- Core Utils
-    "folke/which-key.nvim",
-    "mfussenegger/nvim-dap-python",
-    "williamboman/mason.nvim",
-    "williamboman/mason-lspconfig.nvim",
-    "jay-babu/mason-null-ls.nvim",
-    'RRethy/vim-illuminate',
-    "folke/todo-comments.nvim",
+    {
+        "hrsh7th/nvim-cmp",
+        event = "InsertEnter",
+        dependencies = {
+            "hrsh7th/cmp-nvim-lsp",
+            "hrsh7th/cmp-buffer",
+            "hrsh7th/cmp-cmdline",
+            "hrsh7th/cmp-buffer",
+            "hrsh7th/cmp-path",
+            "ray-x/lsp_signature.nvim",
+            "neovim/nvim-lspconfig",
+        },
+    },
 
-    -- Debugging
-    "mfussenegger/nvim-dap",
-    "theHamsta/nvim-dap-virtual-text",
-    "rcarriga/nvim-dap-ui",
-
-    -- CMP
-    "nvim-treesitter/nvim-treesitter",
-    "hrsh7th/nvim-cmp",
-    "hrsh7th/cmp-nvim-lsp",
-    "hrsh7th/cmp-cmdline",
-    "hrsh7th/cmp-buffer",
-    "hrsh7th/cmp-path",
-    "saadparwaiz1/cmp_luasnip",
-    "neovim/nvim-lspconfig",
-    "L3MON4D3/LuaSnip",
-    "jose-elias-alvarez/null-ls.nvim",
-    "nvim-lua/plenary.nvim",
-    "nvim-telescope/telescope.nvim",
-    "filipdutescu/renamer.nvim",
-    "nvim-lualine/lualine.nvim",
-    'ray-x/lsp_signature.nvim',
-
-    -- Convenience
-    'sindrets/diffview.nvim',
-    'tigion/nvim-asciidoc-preview',
-    "xiyaowong/nvim-transparent",
-    'audibleblink/hackthebox.vim',
-    "lukas-reineke/indent-blankline.nvim",
-    "ThePrimeagen/harpoon",
-    'b0o/schemastore.nvim',
-    "lewis6991/impatient.nvim",
-    "rafamadriz/friendly-snippets",
-    "JoosepAlviste/nvim-ts-context-commentstring",
-    "tpope/vim-surround",
-    "windwp/nvim-autopairs",
-    "akinsho/bufferline.nvim",
-
+    {
+        "mfussenegger/nvim-dap",
+        event = "InsertEnter",
+        dependencies = {
+            "theHamsta/nvim-dap-virtual-text",
+            "rcarriga/nvim-dap-ui",
+            "mfussenegger/nvim-dap-python",
+        },
+    },
     {
         "ray-x/go.nvim",
         dependencies = { -- optional packages
             "ray-x/guihua.lua",
             "neovim/nvim-lspconfig",
-            "nvim-treesitter/nvim-treesitter",
         },
         event = { "CmdlineEnter" },
         ft = { "go", 'gomod' },
     },
 
     {
-        'numToStr/Comment.nvim',
-        config = function()
-            require('Comment').setup({
-
-            })
-        end
-    },
-    {
         "nvim-neotest/neotest",
+        event = "InsertEnter",
         dependencies = {
             "nvim-neotest/neotest-go",
             "nvim-lua/plenary.nvim",
-            "nvim-treesitter/nvim-treesitter",
             "antoinemadec/FixCursorHold.nvim"
         },
     },
@@ -95,14 +68,53 @@ local plugins = {
         config = function()
             require("nvim-surround").setup({})
         end,
+        event = "VeryLazy",
     },
     {
         'weilbith/nvim-code-action-menu',
+        event = "InsertEnter",
         cmd = 'CodeActionMenu',
     },
+
+    -- if some code requires a module from an unloaded plugin, it will be automatically loaded.
+    -- So for api plugins like devicons, we can always set lazy=true
     {
-        "folke/trouble.nvim",
-        dependencies = { "nvim-tree/nvim-web-devicons" },
+        "nvim-tree/nvim-web-devicons",
+        lazy = true,
+        event = "VeryLazy",
+    },
+    { "folke/trouble.nvim", lazy = true, event = "VeryLazy" },
+    { "folke/which-key.nvim", lazy = true, event = "VeryLazy" },
+    { "williamboman/mason.nvim", lazy = true, event = "VeryLazy" },
+    { "nvim-telescope/telescope.nvim", lazy = true, event = "VeryLazy" },
+    { "nvim-lua/plenary.nvim", lazy = true, event = "VeryLazy" },
+    { 'sindrets/diffview.nvim',lazy = true, event = "VeryLazy" },
+    { "windwp/nvim-autopairs", lazy = true},
+    { "tpope/vim-surround", lazy = true },
+    { "rafamadriz/friendly-snippets", lazy = true, event = "VeryLazy" },
+    {
+        "saadparwaiz1/cmp_luasnip",
+        lazy = true,
+        event = "VeryLazy",
+    },
+    { "L3MON4D3/LuaSnip", lazy = true },
+    { "nvim-lualine/lualine.nvim", lazy = true },
+    {
+        "akinsho/bufferline.nvim",
+        event = "VeryLazy",
+        lazy = true
+    },
+    {
+        "ThePrimeagen/harpoon",
+        event = "InsertEnter",
+        lazy = true
+    },
+    {
+        "lewis6991/impatient.nvim",
+        config = function()
+            -- require('impatient').enable_profile()
+        end,
+        lazy = false,
     },
 }
 

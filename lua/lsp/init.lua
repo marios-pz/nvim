@@ -14,7 +14,6 @@ M.server_capabilities = function()
             return 'capabilites for: ' .. item
         end,
     }, function(choice)
-        -- print(active_client_map[choice])
         print(
             vim.inspect(
                 vim.lsp.get_active_clients()[active_client_map[choice]].server_capabilities.executeCommandProvider
@@ -28,7 +27,6 @@ require('lsp.cmp')
 require('lsp.lsp-signature')
 require('lsp.mason')
 require('lsp.handlers').setup()
-require('lsp.null-ls')
 require('lsp.go-nvim')
 
 return M

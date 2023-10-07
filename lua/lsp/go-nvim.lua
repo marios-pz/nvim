@@ -29,15 +29,9 @@ require('go').setup({
     -- function(bufnr)
     --    vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>F", "<cmd>lua vim.lsp.buf.formatting()<CR>", {noremap=true, silent=true})
     -- end
-    -- to setup a table of codelens
-    lsp_diag_hdlr = true, -- hook lsp diag handler
-    lsp_diag_underline = true,
     -- virtual text setup
     lsp_diag_virtual_text = { space = 0, prefix = icons.ui.CircleDot },
 
-    lsp_diag_signs = true,
-    lsp_diag_update_in_insert = true,
-    lsp_document_formatting = false,
     -- set to true: use gopls to format
     -- false if you want to use other formatter tool(e.g. efm, nulls)
     lsp_inlay_hints = {
@@ -80,7 +74,7 @@ require('go').setup({
     dap_debug_gui = true,     -- set to true to enable dap gui, highly recommend
     dap_debug_vt = true,      -- set to true to enable dap virtual text
     build_tags = 'tag1,tag2', -- set default build tags
-    textobjects = true,       -- enable default text jobects through treesittter-text-objects
+    textobjects = false,       -- enable default text jobects through treesittter-text-objects
     test_runner = 'go',       -- one of {`go`, `richgo`, `dlv`, `ginkgo`, `gotestsum`}
     verbose_tests = true,     -- set to add verbose flag to tests
     run_in_floaterm = false,  -- set to true to run in float window. :GoTermClose closes the floatterm

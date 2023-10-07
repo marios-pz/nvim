@@ -36,7 +36,6 @@ local options = {
     "ΑA,ΒB,ΨC,ΔD,ΕE,ΦF,ΓG,ΗH,ΙI,ΞJ,ΚK,ΛL,ΜM,ΝN,ΟO,ΠP,QQ,ΡR,ΣS,ΤT,ΘU,ΩV,WW,ΧX,ΥY,ΖZ,αa,βb,ψc,δd,εe,φf,γg,ηh,ιi,ξj,κk,λl,μm,νn,οo,πp,qq,ρr,σs,τt,θu,ωv,ςw,χx,υy,ζz",
     foldlevel = 20,
     foldmethod = "expr",
-    foldexpr = "nvim_treesitter#foldexpr()",
 }
 
 for k, v in pairs(options) do
