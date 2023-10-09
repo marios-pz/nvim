@@ -92,11 +92,6 @@ local plugins = {
     { "windwp/nvim-autopairs", lazy = true},
     { "tpope/vim-surround", lazy = true },
     { "rafamadriz/friendly-snippets", lazy = true, event = "VeryLazy" },
-    {
-        "saadparwaiz1/cmp_luasnip",
-        lazy = true,
-        event = "VeryLazy",
-    },
     { "L3MON4D3/LuaSnip", lazy = true },
     { "nvim-lualine/lualine.nvim", lazy = true },
     {
@@ -108,13 +103,6 @@ local plugins = {
         "ThePrimeagen/harpoon",
         event = "InsertEnter",
         lazy = true
-    },
-    {
-        "lewis6991/impatient.nvim",
-        config = function()
-            -- require('impatient').enable_profile()
-        end,
-        lazy = false,
     },
 }
 
