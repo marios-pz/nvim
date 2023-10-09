@@ -92,11 +92,6 @@ local plugins = {
     { "windwp/nvim-autopairs", lazy = true},
     { "tpope/vim-surround", lazy = true },
     { "rafamadriz/friendly-snippets", lazy = true, event = "VeryLazy" },
-    {
-        "saadparwaiz1/cmp_luasnip",
-        lazy = true,
-        event = "VeryLazy",
-    },
     { "L3MON4D3/LuaSnip", lazy = true },
     { "nvim-lualine/lualine.nvim", lazy = true },
     {

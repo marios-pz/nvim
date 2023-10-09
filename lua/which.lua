@@ -59,12 +59,6 @@ function RunBind(lib, func, name)
 end
 
 local mappings = {
-    ['/'] = {
-        function()
-            require('Comment.api').toggle.linewise.current()
-        end,
-        'Comment',
-    },
     w = Bind("w!", "Save"),
     Q = Bind("qa!", "Quit"),
     c = Bind("Bdelete!", "Close Buffer"),
@@ -91,8 +85,16 @@ local mappings = {
         'Rename',
     },
 
+
+
     d = {
         name = 'Debugging',
+        s = {
+            function()
+                require("convenience.dap")
+            end,
+            'Start Dap',
+        },
         b = {
             function()
                 require('dap').toggle_breakpoint()
