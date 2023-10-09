@@ -109,13 +109,6 @@ local plugins = {
         event = "InsertEnter",
         lazy = true
     },
-    {
-        "lewis6991/impatient.nvim",
-        config = function()
-            -- require('impatient').enable_profile()
-        end,
-        lazy = false,
-    },
 }
 
 local opts = {}
