@@ -30,7 +30,8 @@ require('go').setup({
     --    vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>F", "<cmd>lua vim.lsp.buf.formatting()<CR>", {noremap=true, silent=true})
     -- end
     -- virtual text setup
-    lsp_diag_virtual_text = { space = 0, prefix = icons.ui.CircleDot },
+    -- lsp_diag_virtual_text = { space = 0, prefix = icons.ui.CircleDot },
+
 
     -- set to true: use gopls to format
     -- false if you want to use other formatter tool(e.g. efm, nulls)
