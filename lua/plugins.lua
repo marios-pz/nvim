@@ -17,7 +17,7 @@ local plugins = {
         lazy = false, -- make sure we load this during startup if it is your main colorscheme
         priority = 1000, -- make sure to load this before all the other start plugins
         config = function()
-          vim.cmd([[colorscheme tokyonight-storm]])
+            vim.cmd([[colorscheme tokyonight-storm]])
         end,
     },
 
@@ -51,7 +51,7 @@ local plugins = {
             "neovim/nvim-lspconfig",
         },
         event = { "CmdlineEnter" },
-        ft = { "go", 'gomod' },
+        ft = { "go", "gomod" },
     },
 
     {
@@ -60,7 +60,14 @@ local plugins = {
         dependencies = {
             "nvim-neotest/neotest-go",
             "nvim-lua/plenary.nvim",
-            "antoinemadec/FixCursorHold.nvim"
+            "antoinemadec/FixCursorHold.nvim",
+        },
+    },
+
+    {
+        "MunifTanjim/prettier.nvim",
+        dependencies = {
+            "jose-elias-alvarez/null-ls.nvim",
         },
     },
     {
@@ -71,9 +78,9 @@ local plugins = {
         event = "VeryLazy",
     },
     {
-        'weilbith/nvim-code-action-menu',
+        "weilbith/nvim-code-action-menu",
         event = "InsertEnter",
-        cmd = 'CodeActionMenu',
+        cmd = "CodeActionMenu",
     },
 
     -- if some code requires a module from an unloaded plugin, it will be automatically loaded.
@@ -83,26 +90,25 @@ local plugins = {
         lazy = true,
         event = "VeryLazy",
     },
-    { "folke/trouble.nvim", lazy = true, event = "VeryLazy" },
-    { "folke/which-key.nvim", lazy = true, event = "VeryLazy" },
-    { "williamboman/mason.nvim", lazy = true, event = "VeryLazy" },
+    { "folke/trouble.nvim",            lazy = true, event = "VeryLazy" },
+    { "folke/which-key.nvim",          lazy = true, event = "VeryLazy" },
+    { "williamboman/mason.nvim",       lazy = true, event = "VeryLazy" },
     { "nvim-telescope/telescope.nvim", lazy = true, event = "VeryLazy" },
-    { "nvim-lua/plenary.nvim", lazy = true, event = "VeryLazy" },
-    { 'sindrets/diffview.nvim',lazy = true, event = "VeryLazy" },
-    { "windwp/nvim-autopairs", lazy = true},
-    { "tpope/vim-surround", lazy = true },
-    { "rafamadriz/friendly-snippets", lazy = true, event = "VeryLazy" },
-    { "L3MON4D3/LuaSnip", lazy = true },
-    { "nvim-lualine/lualine.nvim", lazy = true },
+    { "nvim-lua/plenary.nvim",         lazy = true, event = "VeryLazy" },
+    { "sindrets/diffview.nvim",        lazy = true, event = "VeryLazy" },
+    { "windwp/nvim-autopairs",         lazy = true },
+    { "tpope/vim-surround",            lazy = true },
+    { "rafamadriz/friendly-snippets",  lazy = true, event = "VeryLazy" },
+    { "nvim-lualine/lualine.nvim",     lazy = true },
     {
         "akinsho/bufferline.nvim",
         event = "VeryLazy",
-        lazy = true
+        lazy = true,
     },
     {
         "ThePrimeagen/harpoon",
         event = "InsertEnter",
-        lazy = true
+        lazy = true,
     },
 }
 

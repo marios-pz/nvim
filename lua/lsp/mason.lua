@@ -1,25 +1,14 @@
-local status_ok, mason = pcall(require, 'mason')
+local status_ok, mason = pcall(require, "mason")
 if not status_ok then
     return
 end
 
-local servers = {
-    'bashls',
-    'lua_ls',
-    'jsonls',
-    'jdtls',
-    'dockerls',
-    'docker_compose_language_service',
-    'tsserver',
-    'yamlls'
-}
-
 local settings = {
     ui = {
         icons = {
-            package_installed = '◍',
-            package_pending = '◍',
-            package_uninstalled = '◍',
+            package_installed = "◍",
+            package_pending = "◍",
+            package_uninstalled = "◍",
         },
     },
     log_level = vim.log.levels.INFO,
@@ -28,14 +17,39 @@ local settings = {
 
 mason.setup(settings)
 
-local lspconfig_status_ok, lspconfig = pcall(require, 'lspconfig')
+local prettier = require("prettier")
+
+prettier.setup({
+    bin = "prettier", -- or `'prettierd'` (v0.23.3+)
+    filetypes = {
+        "css",
+        "graphql",
+        "html",
+        "javascript",
+        "javascriptreact",
+        "json",
+        "less",
+        "markdown",
+        "scss",
+        "typescript",
+        "typescriptreact",
+    },
+})
+
+local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
 if not lspconfig_status_ok then
     return
 end
 
-lspconfig.pylyzer.setup({
+lspconfig.prettier.setup({
     on_attach = require("lsp.handlers").on_attach,
     capabilities = require("lsp.handlers").capabilities,
+})
+
+lspconfig.pyright.setup({
+    on_attach = require("lsp.handlers").on_attach,
+    capabilities = require("lsp.handlers").capabilities,
+    settings = require("lsp.settings.python"),
 })
 
 lspconfig.gopls.setup({
@@ -64,7 +78,7 @@ lspconfig.gopls.setup({
                     lostcancel = true,
                 },
                 codelenses = {
-                    generate = true,   -- show the `go generate` lens.
+                    generate = true, -- show the `go generate` lens.
                     gc_details = true, --  // Show a code lens toggling the display of gc's choices.
                     test = true,
                     tidy = true,
@@ -72,12 +86,12 @@ lspconfig.gopls.setup({
                 usePlaceholders = false,
                 completeUnimported = true,
                 staticcheck = true,
-                matcher = 'fuzzy',
-                diagnosticsDelay = '500ms',
-                symbolMatcher = 'FastFuzzy',
-                symbolStyle = 'Dynamic', -- Dynamic, Full, Package
-                gofumpt = true,          -- true, -- turn on for new repos, gofmpt is good but also create code turmoils
-                buildFlags = { '-tags', 'integration' },
+                matcher = "fuzzy",
+                diagnosticsDelay = "500ms",
+                symbolMatcher = "FastFuzzy",
+                symbolStyle = "Dynamic", -- Dynamic, Full, Package
+                gofumpt = true, -- true, -- turn on for new repos, gofmpt is good but also create code turmoils
+                buildFlags = { "-tags", "integration" },
                 expandWorkspaceToModule = true,
                 hints = {
                     assignVariableTypes = true,
@@ -100,11 +114,11 @@ lspconfig.lua_ls.setup({
             },
             hint = {
                 enable = true,
-                arrayIndex = 'All', -- "Enable", "Auto", "Disable"
+                arrayIndex = "All", -- "Enable", "Auto", "Disable"
                 await = true,
-                paramName = 'All',  -- "All", "Literal", "Disable"
+                paramName = "All", -- "All", "Literal", "Disable"
                 paramType = false,
-                semicolon = 'All',  -- "All", "SameLine", "Disable"
+                semicolon = "All", -- "All", "SameLine", "Disable"
                 setType = true,
             },
             diagnostics = {
@@ -120,6 +134,5 @@ lspconfig.lua_ls.setup({
                 enable = false,
             },
         },
-    }
-    ,
+    },
 })

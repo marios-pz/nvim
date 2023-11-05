@@ -9,9 +9,9 @@ M.server_capabilities = function()
     end
 
     vim.ui.select(vim.tbl_keys(active_client_map), {
-        prompt = 'Select client:',
+        prompt = "Select client:",
         format_item = function(item)
-            return 'capabilites for: ' .. item
+            return "capabilites for: " .. item
         end,
     }, function(choice)
         print(
@@ -23,10 +23,11 @@ M.server_capabilities = function()
     end)
 end
 
-require('lsp.cmp')
-require('lsp.lsp-signature')
-require('lsp.mason')
-require('lsp.handlers').setup()
-require('lsp.go-nvim')
+require("lsp.cmp")
+require("lsp.null-ls")
+require("lsp.lsp-signature")
+require("lsp.mason")
+require("lsp.handlers").setup()
+require("lsp.go-nvim")
 
 return M

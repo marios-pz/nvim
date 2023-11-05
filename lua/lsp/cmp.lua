@@ -3,14 +3,8 @@ if not status_ok then
     return
 end
 
-require("luasnip.loaders.from_vscode").lazy_load()
-
 cmp.setup({
-    snippet = {
-        expand = function(args)
-            require("luasnip").lsp_expand(args.body)
-        end,
-    },
+    snippet = {},
     window = {
         -- completion = cmp.config.window.bordered(),
         -- documentation = cmp.config.window.bordered(),
@@ -23,12 +17,10 @@ cmp.setup({
         ["<C-b>"] = cmp.mapping.scroll_docs(-4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
         ["<C-e>"] = cmp.mapping.abort(),
-
     }),
     sources = cmp.config.sources({
         { name = "nvim_lsp" },
         { name = "nvim_lua" },
-        { name = "luasnip" },
         { name = "path" },
     }, {
         { name = "buffer" },
