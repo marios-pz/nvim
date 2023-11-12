@@ -152,11 +152,3 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   end,
   group = format_sync_grp,
 })
-
--- Python
-vim.api.nvim_exec([[
-  augroup AutoIsort
-    autocmd!
-    autocmd BufWritePre *.py %!isort --profile black - 2>/dev/null
-  augroup END
-]], false)

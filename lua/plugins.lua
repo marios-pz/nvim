@@ -14,7 +14,7 @@ vim.opt.rtp:prepend(lazypath)
 local plugins = {
     {
         "folke/tokyonight.nvim",
-        lazy = false, -- make sure we load this during startup if it is your main colorscheme
+        lazy = false,    -- make sure we load this during startup if it is your main colorscheme
         priority = 1000, -- make sure to load this before all the other start plugins
         config = function()
             vim.cmd([[colorscheme tokyonight-storm]])
@@ -31,6 +31,8 @@ local plugins = {
             "hrsh7th/cmp-buffer",
             "hrsh7th/cmp-path",
             "ray-x/lsp_signature.nvim",
+            "neovim/nvim-lspconfig",
+            "williamboman/mason-lspconfig.nvim",
             "neovim/nvim-lspconfig",
         },
     },

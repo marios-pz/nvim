@@ -31,13 +31,10 @@ null_ls.setup({
     debug = false,
     sources = {
         formatting.prettier.with({ filetypes = { "css", "typescript", "javascript", "html", "typescript.tsx" } }),
-        formatting.black.with({
-            args = { "--stdin-filename", "$FILENAME", "--quiet", "-", "--fast", "--line-length", "79" },
-        }),
+        diagnostics.flake8,
         formatting.stylua,
         formatting.shfmt,
         formatting.buf,
-        diagnostics.flake8,
         diagnostics.shellcheck,
         diagnostics.zsh,
         code_actions.shellcheck,
