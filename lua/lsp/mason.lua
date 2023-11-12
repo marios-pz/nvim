@@ -26,39 +26,26 @@ local servers = {
     "eslint",
     "html",
     "cssls",
+    "jsonls",
     "jsonnet_ls",
     "jdtls",
     "gopls",
-    "jsonls",
     "dockerls",
     "docker_compose_language_service",
     "pyright",
-    "clangd"
+    "clangd",
+    "sqlls",
+    "nginx_language_server",
+    "yamlls",
+    "postgres_lsp",
+    "terraform_lsp"
 }
 
 
 require("mason-lspconfig").setup {
     ensure_installed = servers,
+    automatic_installation = true,
 }
-
-local prettier = require("prettier")
-
-prettier.setup({
-    bin = "prettier",
-    filetypes = {
-        "css",
-        "graphql",
-        "html",
-        "javascript",
-        "javascriptreact",
-        "json",
-        "less",
-        "markdown",
-        "scss",
-        "typescript",
-        "typescriptreact",
-    },
-})
 
 local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
 if not lspconfig_status_ok then
@@ -91,7 +78,7 @@ lspconfig.bashls.setup({
 })
 
 lspconfig.eslint.setup({
-    on_attach = function(client, bufnr)
+    on_attach = function(_, bufnr)
         vim.api.nvim_create_autocmd("BufWritePre", {
             buffer = bufnr,
             command = "EslintFixAll",
@@ -232,6 +219,15 @@ lspconfig.jdtls.setup({
     on_attach = require("lsp.handlers").on_attach,
     capabilities = require("lsp.handlers").capabilities,
 })
+
+--[[
+--local config = {
+    cmd = { '/usr/bin/jdtls' },
+    root_dir = vim.fs.dirname(vim.fs.find({ 'gradlew', '.git', 'mvnw' }, { upward = true })[1]),
+  }
+--]]
+
+-- require('jdtls').start_or_attach(config)
 
 
 lspconfig.graphql.setup({

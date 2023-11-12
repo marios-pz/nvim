@@ -25,6 +25,7 @@ local plugins = {
         "hrsh7th/nvim-cmp",
         event = "InsertEnter",
         dependencies = {
+            "jose-elias-alvarez/null-ls.nvim",
             "hrsh7th/cmp-nvim-lsp",
             "hrsh7th/cmp-buffer",
             "hrsh7th/cmp-cmdline",
@@ -65,13 +66,6 @@ local plugins = {
             "antoinemadec/FixCursorHold.nvim",
         },
     },
-
-    {
-        "MunifTanjim/prettier.nvim",
-        dependencies = {
-            "jose-elias-alvarez/null-ls.nvim",
-        },
-    },
     {
         "kylechui/nvim-surround",
         config = function()
@@ -84,7 +78,11 @@ local plugins = {
         event = "InsertEnter",
         cmd = "CodeActionMenu",
     },
-
+    {
+        'mfussenegger/nvim-jdtls',
+        lazy = true,
+        event = "VeryLazy",
+    },
     -- if some code requires a module from an unloaded plugin, it will be automatically loaded.
     -- So for api plugins like devicons, we can always set lazy=true
     {
