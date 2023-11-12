@@ -22,7 +22,7 @@ local servers = {
     "rust_analyzer",
     "azure_pipelines_ls",
     "helm_ls",
-    "bash-language-server",
+    "bashls",
     "eslint",
     "html",
     "cssls",

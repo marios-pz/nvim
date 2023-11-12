@@ -61,7 +61,7 @@ end
 local mappings = {
     w = Bind("w!", "Save"),
     Q = Bind("qa!", "Quit"),
-    c = Bind("Bdelete!", "Close Buffer"),
+    c = Bind("bdelete", "Close Buffer"),
     C = Bind('silent! execute "%bd|e#|bd#"', "Close all buffers but this"),
     a = Bind("CodeActionMenu", "Code Actions"),
     q = Bind("TroubleToggle", "Quickfix"),
