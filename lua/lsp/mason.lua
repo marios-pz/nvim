@@ -35,24 +35,20 @@ local servers = {
     "pyright",
     "clangd",
     "sqlls",
-    "nginx_language_server",
     "yamlls",
-    "postgres_lsp",
-    "terraform_lsp"
 }
 
-
-require("mason-lspconfig").setup {
+require("mason-lspconfig").setup({
     ensure_installed = servers,
     automatic_installation = true,
-}
+})
 
 local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
 if not lspconfig_status_ok then
     return
 end
 
-lspconfig.azure_pipelines_ls.setup {
+lspconfig.azure_pipelines_ls.setup({
     settings = {
         yaml = {
             schemas = {
@@ -65,7 +61,7 @@ lspconfig.azure_pipelines_ls.setup {
             },
         },
     },
-}
+})
 
 lspconfig.helm_ls.setup({
     on_attach = require("lsp.handlers").on_attach,
@@ -78,15 +74,9 @@ lspconfig.bashls.setup({
 })
 
 lspconfig.eslint.setup({
-    on_attach = function(_, bufnr)
-        vim.api.nvim_create_autocmd("BufWritePre", {
-            buffer = bufnr,
-            command = "EslintFixAll",
-        })
-    end,
+    on_attach = require("lsp.handlers").on_attach,
     capabilities = require("lsp.handlers").capabilities,
 })
-
 
 lspconfig.html.setup({
     on_attach = require("lsp.handlers").on_attach,
@@ -103,12 +93,10 @@ lspconfig.jsonls.setup({
     capabilities = require("lsp.handlers").capabilities,
 })
 
-
 lspconfig.matlab_ls.setup({
     on_attach = require("lsp.handlers").on_attach,
     capabilities = require("lsp.handlers").capabilities,
 })
-
 
 lspconfig.nginx_language_server.setup({
     on_attach = require("lsp.handlers").on_attach,
@@ -135,12 +123,12 @@ lspconfig.rust_analyzer.setup({
     on_attach = require("lsp.handlers").on_attach,
     capabilities = require("lsp.handlers").capabilities,
     settings = {
-        ['rust-analyzer'] = {
+        ["rust-analyzer"] = {
             diagnostics = {
                 enable = true,
-            }
-        }
-    }
+            },
+        },
+    },
 })
 
 lspconfig.gdscript.setup({
@@ -148,18 +136,15 @@ lspconfig.gdscript.setup({
     capabilities = require("lsp.handlers").capabilities,
 })
 
-
 lspconfig.yamlls.setup({
     on_attach = require("lsp.handlers").on_attach,
     capabilities = require("lsp.handlers").capabilities,
 })
 
-
 lspconfig.vuels.setup({
     on_attach = require("lsp.handlers").on_attach,
     capabilities = require("lsp.handlers").capabilities,
 })
-
 
 lspconfig.vimls.setup({
     on_attach = require("lsp.handlers").on_attach,
@@ -170,7 +155,6 @@ lspconfig.terraform_lsp.setup({
     on_attach = require("lsp.handlers").on_attach,
     capabilities = require("lsp.handlers").capabilities,
 })
-
 
 lspconfig.svelte.setup({
     on_attach = require("lsp.handlers").on_attach,
@@ -202,18 +186,10 @@ lspconfig.docker_compose_language_service.setup({
     capabilities = require("lsp.handlers").capabilities,
 })
 
-
 lspconfig.cssls.setup({
     on_attach = require("lsp.handlers").on_attach,
     capabilities = require("lsp.handlers").capabilities,
 })
-
-
-lspconfig.asm_lsp.setup({
-    on_attach = require("lsp.handlers").on_attach,
-    capabilities = require("lsp.handlers").capabilities,
-})
-
 
 lspconfig.jdtls.setup({
     on_attach = require("lsp.handlers").on_attach,
@@ -228,7 +204,6 @@ lspconfig.jdtls.setup({
 --]]
 
 -- require('jdtls').start_or_attach(config)
-
 
 lspconfig.graphql.setup({
     on_attach = require("lsp.handlers").on_attach,
@@ -267,7 +242,7 @@ lspconfig.gopls.setup({
                     lostcancel = true,
                 },
                 codelenses = {
-                    generate = true,   -- show the `go generate` lens.
+                    generate = true, -- show the `go generate` lens.
                     gc_details = true, --  // Show a code lens toggling the display of gc's choices.
                     test = true,
                     tidy = true,
@@ -279,7 +254,7 @@ lspconfig.gopls.setup({
                 diagnosticsDelay = "500ms",
                 symbolMatcher = "FastFuzzy",
                 symbolStyle = "Dynamic", -- Dynamic, Full, Package
-                gofumpt = true,          -- true, -- turn on for new repos, gofmpt is good but also create code turmoils
+                gofumpt = true, -- true, -- turn on for new repos, gofmpt is good but also create code turmoils
                 buildFlags = { "-tags", "integration" },
                 expandWorkspaceToModule = true,
                 hints = {
@@ -305,9 +280,9 @@ lspconfig.lua_ls.setup({
                 enable = true,
                 arrayIndex = "All", -- "Enable", "Auto", "Disable"
                 await = true,
-                paramName = "All",  -- "All", "Literal", "Disable"
+                paramName = "All", -- "All", "Literal", "Disable"
                 paramType = false,
-                semicolon = "All",  -- "All", "SameLine", "Disable"
+                semicolon = "All", -- "All", "SameLine", "Disable"
                 setType = true,
             },
             diagnostics = {

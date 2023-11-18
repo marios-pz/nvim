@@ -24,14 +24,14 @@ local setup = {
     icons = {
         breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
         separator = "†", -- symbol used between a key and it's label
-        group = "", -- symbol prepended to a group
+        group = "", -- symbol prepended to a group
     },
     popup_mappings = {
         scroll_down = "<c-d>", -- binding to scroll down inside the popup
-        scroll_up = "<c-u>",   -- binding to scroll up inside the popup
+        scroll_up = "<c-u>", -- binding to scroll up inside the popup
     },
     window = {
-        border = "none", -- none, single, double, shadow
+        border = "single", -- none, single, double, shadow
         position = "bottom",
         margin = { 1, 0, 1, 0 },
         padding = { 2, 2, 2, 2 },
@@ -40,12 +40,12 @@ local setup = {
     layout = {
         height = { min = 4, max = 15 }, -- min and max height of the columns
         width = { min = 20, max = 50 }, -- min and max width of the columns
-        spacing = 12,                   -- spacing between columns
-        align = "left",                 -- align columns left, center or right
+        spacing = 12,             -- spacing between columns
+        align = "left",           -- align columns left, center or right
     },
-    ignore_missing = true,              -- enable this to hide mappings for which you didn't specify a label
+    ignore_missing = true,        -- enable this to hide mappings for which you didn't specify a label
     hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ " },
-    show_help = true,                   -- show help message on the command line when the popup is visible
+    show_help = true,             -- show help message on the command line when the popup is visible
     triggers = { "<leader>" },
     triggers_blacklist = { i = { "j", "k" }, v = { "j", "k" } },
 }
@@ -58,131 +58,98 @@ function RunBind(lib, func, name)
     return Bind("lua require'" .. lib .. "'." .. func, name)
 end
 
+local dap = require("dap")
+
 local mappings = {
+    z = Bind("ZenMode", "ZenMode"),
     w = Bind("w!", "Save"),
     Q = Bind("qa!", "Quit"),
     c = Bind("bdelete", "Close Buffer"),
     C = Bind('silent! execute "%bd|e#|bd#"', "Close all buffers but this"),
     a = Bind("CodeActionMenu", "Code Actions"),
     q = Bind("TroubleToggle", "Quickfix"),
-    F = Bind("Telescope live_grep theme=ivy", "Find Text"),
-    g = Bind("LazyGit", "LazyGit"),
-    f = RunBind('telescope.builtin', "find_files(require('telescope.themes').get_dropdown({previewer = false}))",
-        "Find Files"),
-    b = RunBind('telescope.builtin', "buffers(require('telescope.themes').get_dropdown{previewer = false})",
-        "Buffers"),
-    t = Bind(":TodoTelescope", "Look at TODO"),
-    r = {
-        function()
-            require('renamer').rename({ empty = false })
-        end,
-        'Rename',
-    },
-    u = {
-        function()
-            require("neotest").run.run()
-        end,
-        'Rename',
-    },
-
-
-
+    F = Bind("Telescope live_grep", "Find Text"),
+    f = RunBind(
+        "telescope.builtin",
+        "find_files(require('telescope.themes').get_dropdown({previewer = false}))",
+        "Find Files"
+    ),
     d = {
-        name = 'Debugging',
-        s = {
-            function()
-                require("convenience.dap")
-            end,
-            'Start Dap',
-        },
+        name = "Debugging",
         b = {
             function()
-                require('dap').toggle_breakpoint()
+                dap.toggle_breakpoint()
             end,
-            'Breakpoint',
+            "Breakpoint",
         },
-        r = { "<cmd>lua require'dap'.repl.toggle({}, 'vsplit')<cr><C-W>l", 'Repl' },
+        r = { "<cmd>lua require'dap'.repl.toggle({}, 'vsplit')<cr><C-W>l", "Repl" },
         l = {
             function()
-                require('dap').run_last()
+                dap.run_last()
             end,
-            'Exit',
+            "Exit",
         },
         h = {
             function()
-                require('dap.ui.widgets').hover()
+                dap.ui.widgets.hover()
             end,
-            'Hover',
+            "Hover",
         },
         c = {
             function()
-                require('dap').run_to_cursor()
+                dap.run_to_cursor()
             end,
-            'Run to cursor',
+            "Run to cursor",
         },
         C = {
             function()
-                require('dap').clear_breakpoints()
+                dap.clear_breakpoints()
             end,
-            'Clear breakpoints',
+            "Clear breakpoints",
         },
         k = {
             function()
-                require('dap').up()
+                dap.up()
             end,
-            'Move arrow up',
+            "Move arrow up",
         },
         j = {
             function()
-                require('dap').down()
+                dap.down()
             end,
-            'Move arrow down',
+            "Move arrow down",
         },
         L = {
             function()
-                require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: '))
+                dap.set_breakpoint(nil, nil, vim.fn.input("Log point message: "))
             end,
-            'breakpoint log message',
+            "breakpoint log message",
         },
         e = {
             function()
-                require('dap').set_exception_breakpoints({ 'all' })
+                dap.set_exception_breakpoints({ "all" })
             end,
-            'exception breakpoint',
+            "exception breakpoint",
         },
         a = {
             function()
-                require('debugHelper').attach()
+                require("debugHelper").attach()
             end,
-            'Attach',
-        },
-        A = {
-            function()
-                require('debugHelper').attachToRemote()
-            end,
-            'Attach to remote',
+            "Attach",
         },
         u = {
             function()
-                require('dapui').toggle()
+                require("dapui").toggle()
             end,
-            'UI',
+            "UI",
         },
-        ['?'] = {
+        ["?"] = {
             function()
-                local widgets = require('dap.ui.widgets')
+                local widgets = require("dap.ui.widgets")
                 widgets.centered_float(widgets.scopes)
             end,
-            'widgets?????',
+            "widgets?????",
         },
-    },
-    h = {
-        name = "Harpoon",
-        h = RunBind("harpoon.ui", "toggle_quick_menu()", "Harpoon"),
-        m = RunBind("harpoon.mark", "add_file()", "Mark"),
-        t = Bind("Telescope harpoon marks", "Telescope"),
-        n = RunBind("require('harpoon.ui')", "nav_next()", "Next"),
-        p = RunBind("require('harpoon.ui')", "nav_prev()", "Previous"),
     },
     D = {
         name = "Diff",
@@ -194,7 +161,7 @@ local mappings = {
         F = Bind("DiffviewFocusFiles", "Focus Files"),
     },
     s = {
-        name = 'Search',
+        name = "Search",
         c = Bind("Telescope colorscheme", "Colorscheme"),
         h = Bind("Telescope help_tags", "Find help"),
         M = Bind("Telescope man_pages", "Man pages"),
@@ -202,11 +169,6 @@ local mappings = {
         R = Bind("Telescope registers", "Registers"),
         k = Bind("Telescope keymaps", "Keymaps"),
         C = Bind("Telescope commands", "Commands"),
-    },
-    m = {
-        name = "Mason",
-        m = Bind("Mason", "Mason"),
-        l = Bind("MasonLog", "Mason"),
     },
 
     l = {
@@ -224,23 +186,19 @@ local mappings = {
         q = Bind("lua vim.diagnostic.setloclist()", "Quickfix"),
         r = Bind("lua vim.lsp.buf.rename()", "Rename"),
     },
-
 }
 
 local vopts = {
-    mode = "v",     -- VISUAL mode
+    mode = "v",  -- VISUAL mode
     prefix = "<leader>",
-    buffer = nil,   -- Global mappings. Specify a buffer number for buffer local mappings
-    silent = true,  -- use `silent` when creating keymaps
+    buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+    silent = true, -- use `silent` when creating keymaps
     noremap = true, -- use `noremap` when creating keymaps
-    nowait = true,  -- use `nowait` when creating keymaps
+    nowait = true, -- use `nowait` when creating keymaps
 }
 
 local vmappings = {
-    ["/"] = Bind(
-        '<ESC><CMD>lua require("Comment.api").toggle.linewise(vim.fn.visualmode())<CR>',
-        "Comment"
-    ),
+    ["/"] = Bind('<ESC><CMD>lua require("Comment.api").toggle.linewise(vim.fn.visualmode())<CR>', "Comment"),
 }
 
 wk.setup(setup)

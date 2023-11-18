@@ -14,17 +14,17 @@ vim.opt.rtp:prepend(lazypath)
 local plugins = {
     {
         "folke/tokyonight.nvim",
-        lazy = false,    -- make sure we load this during startup if it is your main colorscheme
+        lazy = false, -- make sure we load this during startup if it is your main colorscheme
         priority = 1000, -- make sure to load this before all the other start plugins
         config = function()
             vim.cmd([[colorscheme tokyonight-storm]])
         end,
     },
-
     {
         "hrsh7th/nvim-cmp",
         event = "InsertEnter",
         dependencies = {
+            "nvim-treesitter/nvim-treesitter",
             "jose-elias-alvarez/null-ls.nvim",
             "hrsh7th/cmp-nvim-lsp",
             "hrsh7th/cmp-buffer",
@@ -37,7 +37,10 @@ local plugins = {
             "neovim/nvim-lspconfig",
         },
     },
-
+    {
+        "L3MON4D3/LuaSnip",
+        dependencies = { "rafamadriz/friendly-snippets" },
+    },
     {
         "mfussenegger/nvim-dap",
         event = "InsertEnter",
@@ -56,16 +59,6 @@ local plugins = {
         event = { "CmdlineEnter" },
         ft = { "go", "gomod" },
     },
-
-    {
-        "nvim-neotest/neotest",
-        event = "InsertEnter",
-        dependencies = {
-            "nvim-neotest/neotest-go",
-            "nvim-lua/plenary.nvim",
-            "antoinemadec/FixCursorHold.nvim",
-        },
-    },
     {
         "kylechui/nvim-surround",
         config = function()
@@ -79,10 +72,14 @@ local plugins = {
         cmd = "CodeActionMenu",
     },
     {
-        'mfussenegger/nvim-jdtls',
+        "mfussenegger/nvim-jdtls",
         lazy = true,
         event = "VeryLazy",
     },
+    {
+        "folke/zen-mode.nvim",
+    },
+
     -- if some code requires a module from an unloaded plugin, it will be automatically loaded.
     -- So for api plugins like devicons, we can always set lazy=true
     {
@@ -103,11 +100,6 @@ local plugins = {
     {
         "akinsho/bufferline.nvim",
         event = "VeryLazy",
-        lazy = true,
-    },
-    {
-        "ThePrimeagen/harpoon",
-        event = "InsertEnter",
         lazy = true,
     },
 }

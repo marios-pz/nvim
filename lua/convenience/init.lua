@@ -2,3 +2,4 @@
 
 require("convenience.bufferline")
 require("convenience.vim-surround")
+require("convenience.dap")

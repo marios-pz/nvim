@@ -30,7 +30,6 @@ null_ls.setup({
 
     debug = false,
     sources = {
-        formatting.prettier.with({ filetypes = { "css", "typescript", "javascript", "html", "typescript.tsx" } }),
         diagnostics.flake8,
         formatting.stylua,
         formatting.shfmt,

@@ -14,7 +14,7 @@ require('go').setup({
     gotests_template = '',     -- sets gotests -template parameter (check gotests for details)
     gotests_template_dir = '', -- sets gotests -template_dir parameter (check gotests for details)
     comment_placeholder = '',  -- comment_placeholder your cool placeholder e.g. ﳑ       
-    icons = false,
+    icons = true,
     verbose = false,           -- output loginf in messages
     lsp_cfg = true,            -- true: use non-default gopls setup specified in go/lsp.lua
     -- false: do nothing
@@ -75,7 +75,7 @@ require('go').setup({
     dap_debug_gui = true,     -- set to true to enable dap gui, highly recommend
     dap_debug_vt = true,      -- set to true to enable dap virtual text
     build_tags = 'tag1,tag2', -- set default build tags
-    textobjects = false,       -- enable default text jobects through treesittter-text-objects
+    textobjects = true,       -- enable default text jobects through treesittter-text-objects
     test_runner = 'go',       -- one of {`go`, `richgo`, `dlv`, `ginkgo`, `gotestsum`}
     verbose_tests = true,     -- set to add verbose flag to tests
     run_in_floaterm = false,  -- set to true to run in float window. :GoTermClose closes the floatterm
