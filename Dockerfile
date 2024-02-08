@@ -1,6 +1,6 @@
-FROM alpine:3.18.4
+FROM alpine:latest
 
-LABEL maintainer="mario-pz <papazogloy59@gmail.com>"
+LABEL maintainer="marios-pz <papazogloy59@gmail.com>"
 
 RUN apk --update --no-cache add neovim git python3 cargo go
 
@@ -13,4 +13,3 @@ COPY . /home/nvimuser/.config/nvim
 WORKDIR /home/nvimuser
 
 CMD ["nvim"]
-
