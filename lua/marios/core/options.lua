@@ -40,3 +40,13 @@ opt.splitbelow = true -- split horizontal window to the bottom
 
 -- turn off swapfile
 opt.swapfile = false
+
+vim.diagnostic.config({
+    float = {
+        --close_events = { 'InsertEnter', 'CursorMoved' },
+        border = "rounded", --<-- this one
+        --source = 'always',
+        --prefix = ' ',
+        --scope = 'cursor',
+    },
+})

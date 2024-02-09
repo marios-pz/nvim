@@ -6,11 +6,14 @@ local keymap = vim.keymap -- for conciseness
 ---------------------
 -- General Keymaps -------------------
 
+keymap.set("n", "<leader>hh", "<cmd>Telescope keymaps<CR>", { desc = "Save" })
 keymap.set("n", "<leader>w", "<cmd>:w!<CR>", { desc = "Save" })
 keymap.set("n", "<leader>Q", "<cmd>:qa!<CR>", { desc = "Quit" })
 keymap.set("n", "<leader>c", "<cmd>bdelete<CR>", { desc = "Close open window" })
 keymap.set("n", "<leader>C", "<cmd>silent! execute '%bd|e#|bd#'<CR>", { desc = "Close all windows except this one" })
 keymap.set("n", "<leader>z", "<cmd>ZenMode<CR>", { desc = "Toggle ZenMode" })
+
+keymap.set("n", "<S-k>", vim.lsp.buf.hover, { desc = "Toggle LSP Hover" })
 
 -- use jk to exit insert mode
 keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" })

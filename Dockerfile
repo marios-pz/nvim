@@ -1,7 +1,5 @@
 FROM alpine:latest
 
-LABEL maintainer="marios-pz <papazogloy59@gmail.com>"
-
 RUN apk --update --no-cache add neovim git python3 cargo go
 
 RUN adduser -D nvimuser

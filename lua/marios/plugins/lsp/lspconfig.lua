@@ -259,7 +259,12 @@ return {
             on_attach = on_attach,
         })
 
-        lspconfig["gopls"].setup({
+        lspconfig.clangd.setup({
+            capabilities = capabilities,
+            on_attach = on_attach,
+        })
+
+        lspconfig.gopls.setup({
 
             settings = {
                 filetypes = { "go", "gomod", "gohtmltmpl", "gotexttmpl" },

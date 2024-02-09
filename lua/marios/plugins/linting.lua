@@ -12,6 +12,23 @@ return {
             typescriptreact = { "eslint_d" },
             svelte = { "eslint_d" },
             python = { "ruff" },
+            dockerfile = { "hadolint" },
+            c = { "cpplint" },
+            cpp = { "cpplint" },
+            java = { "checkstyle" },
+            lua = { "luacheck" },
+            go = { "golint" },
+            rust = { "rustfmt", "clippy" },
+            html = { "htmlhint" },
+            css = { "stylelint" },
+            markdown = { "markdownlint" },
+            yaml = { "yamllint" },
+            json = { "jsonlint" },
+            vim = { "vint" },
+            shell = { "shellcheck" },
+            makefile = { "checkmake" },
+            sh = { "shellcheck" },
+            terraform = { "terraform_lint" },
         }
 
         local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })

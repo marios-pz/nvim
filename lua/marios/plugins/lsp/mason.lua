@@ -36,7 +36,6 @@ return {
                 "gopls",
                 "stylua",
                 "rust-analyzer",
-                "bash-language-server",
                 "htmx-lsp",
                 "sqlls",
                 "docker-compose-language-service",
@@ -45,6 +44,8 @@ return {
                 "terraform-ls",
                 "helm-ls",
                 "json-lsp",
+                "bash-language-server",
+                "dockerfile-language-server",
             },
             -- auto-install configured servers (with lspconfig)
             automatic_installation = true, -- not the same as ensure_installed
@@ -61,6 +62,7 @@ return {
                 "debugpy",
                 "beautysh",
                 "shellcheck",
+                "hadolint",
             },
         })
     end,
