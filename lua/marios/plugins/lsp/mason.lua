@@ -63,6 +63,7 @@ return {
                 "beautysh",
                 "shellcheck",
                 "hadolint",
+                "go-debug-adapter",
             },
         })
     end,

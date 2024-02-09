@@ -3,7 +3,7 @@ name: Publish Tag
 on:
   push:
     tags:
-      - '*'
+      - "*"
   workflow_dispatch:
 
 jobs:
@@ -24,9 +24,8 @@ jobs:
 
       - name: Build the Docker image
         run: |
-            docker build . -t ghcr.io/mario-pz/nvim:${GITHUB_REF##*/}
+          docker build . -t ghcr.io/mario-pz/nvim:${GITHUB_REF##*/}
 
       - name: Push the Docker image
         run: |
-            docker push ghcr.io/mario-pz/nvim:${GITHUB_REF##*/}
-
+          docker push ghcr.io/mario-pz/nvim:${GITHUB_REF##*/}

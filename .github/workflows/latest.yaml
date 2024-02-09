@@ -3,7 +3,7 @@ name: Publish Latest
 on:
   push:
     branches:
-      - 'master'
+      - "master"
   workflow_dispatch:
 
 jobs:
@@ -24,8 +24,8 @@ jobs:
 
       - name: Build the Docker image
         run: |
-            docker build . -t ghcr.io/mario-pz/nvim:latest
+          docker build . -t ghcr.io/mario-pz/nvim:latest
 
       - name: Push the Docker image
         run: |
-            docker push ghcr.io/mario-pz/nvim:latest
+          docker push ghcr.io/mario-pz/nvim:latest

@@ -7,6 +7,14 @@ local keymap = vim.keymap -- for conciseness
 -- General Keymaps -------------------
 
 keymap.set("n", "<leader>hh", "<cmd>Telescope keymaps<CR>", { desc = "Save" })
+
+keymap.set(
+    "n",
+    "<leader>tt",
+    "<cmd>ToggleTerm size=40 dir=~/Desktop direction=float name=desktop<CR>",
+    { desc = "Toggle ZenMode" }
+)
+
 keymap.set("n", "<leader>w", "<cmd>:w!<CR>", { desc = "Save" })
 keymap.set("n", "<leader>Q", "<cmd>:qa!<CR>", { desc = "Quit" })
 keymap.set("n", "<leader>c", "<cmd>bdelete<CR>", { desc = "Close open window" })

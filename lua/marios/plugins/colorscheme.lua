@@ -1,13 +1,19 @@
 return {
     {
-        "folke/tokyonight.nvim",
-        priority = 1000, -- make sure to load this before all the other start plugins
+        "rebelot/kanagawa.nvim",
         config = function()
-            require("tokyonight").setup({
-                style = "storm",
-            })
-            -- load the colorscheme here
-            vim.cmd([[colorscheme tokyonight-storm]])
+            vim.cmd([[colorscheme kanagawa-dragon]])
         end,
     },
+    -- {
+    --     "folke/tokyonight.nvim",
+    --     priority = 1000, -- make sure to load this before all the other start plugins
+    --     config = function()
+    --         require("tokyonight").setup({
+    --             style = "storm",
+    --         })
+    --         -- load the colorscheme here
+    --         vim.cmd([[colorscheme tokyonight-storm]])
+    --     end,
+    -- },
 }

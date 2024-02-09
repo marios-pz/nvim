@@ -28,8 +28,6 @@ return {
                 rust = { "rust-fmt" },
                 shell = { "beautysh" },
                 sh = { "beautysh" },
-                -- vim = { "vint" },
-                -- makefile = { "checkmake" },
             },
 
             format_on_save = {
