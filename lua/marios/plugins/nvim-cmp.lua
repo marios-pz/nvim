@@ -19,6 +19,22 @@ return {
         -- loads vscode style snippets from installed plugins (e.g. friendly-snippets)
         require("luasnip.loaders.from_vscode").lazy_load()
 
+        vim.diagnostic.config({
+            float = {
+                --close_events = { 'InsertEnter', 'CursorMoved' },
+                border = "rounded", --<-- this one
+                --source = 'always',
+                --prefix = ' ',
+                --scope = 'cursor',
+            },
+        })
+
+        local lsp = vim.lsp
+
+        lsp.handlers["textDocument/hover"] = lsp.with(vim.lsp.handlers.hover, {
+            border = "rounded",
+        })
+
         cmp.setup({
             window = {
                 completion = cmp.config.window.bordered(),

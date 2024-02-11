@@ -21,8 +21,6 @@ keymap.set("n", "<leader>c", "<cmd>bdelete<CR>", { desc = "Close open window" })
 keymap.set("n", "<leader>C", "<cmd>silent! execute '%bd|e#|bd#'<CR>", { desc = "Close all windows except this one" })
 keymap.set("n", "<leader>z", "<cmd>ZenMode<CR>", { desc = "Toggle ZenMode" })
 
-keymap.set("n", "<S-k>", vim.lsp.buf.hover, { desc = "Toggle LSP Hover" })
-
 -- use jk to exit insert mode
 keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" })
 
@@ -37,13 +35,54 @@ keymap.set("n", "<leader>+", "<C-a>", { desc = "Increment number" }) -- incremen
 keymap.set("n", "<leader>-", "<C-x>", { desc = "Decrement number" }) -- decrement
 
 -- window management
-keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" }) -- split window vertically
-keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" }) -- split window horizontally
-keymap.set("n", "<leader>se", "<C-w>=", { desc = "Make splits equal size" }) -- make split windows equal width & height
-keymap.set("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" }) -- close current split window
-
-keymap.set("n", "<leader>to", "<cmd>tabnew<CR>", { desc = "Open new tab" }) -- open new tab
-keymap.set("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "Close current tab" }) -- close current tab
-keymap.set("n", "<leader>tn", "<cmd>tabn<CR>", { desc = "Go to next tab" }) --  go to next tab
-keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Go to previous tab" }) --  go to previous tab
-keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" }) --  move current buffer to new tab
+-- keymap("n", "<C-h>", "<C-w>h")
+-- keymap("n", "<C-j>", "<C-w>j")
+-- keymap("n", "<C-k>", "<C-w>k")
+-- keymap("n", "<C-l>", "<C-w>l")
+--
+-- local command = vim.api.nvim_command
+--
+-- -- Window resize
+-- keymap("n", "<S-Up>", function()
+--     command("resize -2")
+-- end)
+--
+-- keymap("n", "<S-Down>", function()
+--     command("resize +2")
+-- end)
+--
+-- keymap("n", "<S-Right>", function()
+--     command("vertical resize -2")
+-- end)
+--
+-- keymap("n", "<S-Left>", function()
+--     command("vertical resize +2")
+-- end)
+--
+-- -- Navigate buffers
+-- keymap("n", "<S-l>", function()
+--     command("bnext")
+-- end)
+-- keymap("n", "<S-h>", function()
+--     command("bprevious")
+-- end)
+--
+-- -- Insert --
+-- -- Undo break points
+-- keymap("i", ",", ",<C-g>u")
+-- keymap("i", ".", ".<C-g>u")
+-- keymap("i", "!", "!<C-g>u")
+-- keymap("i", "?", "?<C-g>u")
+--
+-- -- Visual --
+-- -- Stay in indent mode
+-- keymap("v", "<", "<gv")
+-- keymap("v", ">", ">gv")
+--
+-- -- Move text up and down
+-- keymap("v", "p", '"_dP')
+--
+-- -- Visual Block --
+-- -- Move text up and down
+-- keymap("x", "J", ":move '>+1<CR>gv-gv")
+-- keymap("x", "K", ":move '<-2<CR>gv-gv")
