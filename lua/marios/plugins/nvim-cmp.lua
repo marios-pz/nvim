@@ -29,12 +29,6 @@ return {
             },
         })
 
-        local lsp = vim.lsp
-
-        lsp.handlers["textDocument/hover"] = lsp.with(vim.lsp.handlers.hover, {
-            border = "rounded",
-        })
-
         cmp.setup({
             window = {
                 completion = cmp.config.window.bordered(),

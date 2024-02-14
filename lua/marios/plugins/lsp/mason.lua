@@ -25,27 +25,45 @@ return {
         })
 
         mason_lspconfig.setup({
-            -- list of servers for mason to install
             ensure_installed = {
-                "tsserver",
-                "html",
+                -- CSS
                 "cssls",
-                "lua_ls",
-                "graphql",
-                "jedi-language-server",
-                "gopls",
-                "stylua",
-                "rust-analyzer",
-                "htmx-lsp",
-                "sqlls",
-                "docker-compose-language-service",
+                "cssmodules_ls",
+                "unocss",
+                "ast_grep",
+                "awk_ls",
+                "als",
+                "tailwindcss",
+                -- Languages
                 "clangd",
-                "json-lsp",
-                "terraform-ls",
-                "helm-ls",
-                "json-lsp",
-                "bash-language-server",
-                "dockerfile-language-server",
+                "cmake",
+                "lua_ls",
+                "html",
+                "htmx",
+                "jedi_language_server",
+                "tsserver",
+                "rust_analyzer",
+                "sqlls",
+                "jsonls",
+                "vimls",
+                "golangci_lint_ls",
+                "gopls",
+                -- "arduino_language_server",
+                -- "asm_lsp",
+
+                -- DevOps
+                "yamlls",
+                "ansiblels",
+                "azure_pipelines_ls",
+                "bashls",
+                "dockerls",
+                "docker_compose_language_service",
+                "gradle_ls",
+                "graphql",
+                "helm_ls",
+                "jsonnet_ls",
+                "marksman",
+                "terraformls",
             },
             -- auto-install configured servers (with lspconfig)
             automatic_installation = true, -- not the same as ensure_installed
@@ -64,6 +82,7 @@ return {
                 "shellcheck",
                 "hadolint",
                 "go-debug-adapter",
+                "tflint",
             },
         })
     end,

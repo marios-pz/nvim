@@ -15,7 +15,7 @@ return {
             c = { "cpplint" },
             cpp = { "cpplint" },
             java = { "checkstyle" },
-            -- lua = { "luacheck" },
+            lua = { "luacheck" },
             go = { "golangci-lint" },
             rust = { "rustfmt", "clippy" },
             html = { "htmlhint" },
@@ -27,7 +27,7 @@ return {
             shell = { "shellcheck" },
             makefile = { "checkmake" },
             sh = { "shellcheck" },
-            terraform = { "terraform_lint" },
+            terraform = { "tflint" },
         }
 
         local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
