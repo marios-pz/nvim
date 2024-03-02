@@ -31,7 +31,6 @@ return {
                 "cssmodules_ls",
                 "unocss",
                 "ast_grep",
-                "awk_ls",
                 "als",
                 "tailwindcss",
                 -- Languages
