@@ -1,6 +1,5 @@
 return {
     "mfussenegger/nvim-lint",
-    lazy = true,
     config = function()
         local lint = require("lint")
 
@@ -10,7 +9,7 @@ return {
             javascriptreact = { "eslint_d" },
             typescriptreact = { "eslint_d" },
             svelte = { "eslint_d" },
-            python = { "ruff" },
+            python = { "flake8" } ,
             dockerfile = { "hadolint" },
             c = { "cpplint" },
             cpp = { "cpplint" },

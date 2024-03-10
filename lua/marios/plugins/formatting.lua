@@ -1,6 +1,5 @@
 return {
     "stevearc/conform.nvim",
-    lazy = true,
     config = function()
         local conform = require("conform")
 
@@ -18,7 +17,7 @@ return {
                 markdown = { "prettier" },
                 graphql = { "prettier" },
                 lua = { "stylua" },
-                python = { "ruff" },
+                python = { "black", "isort" },
                 go = { "goimports", "gofmt" },
                 terraform = { "terraform_fmt" },
                 c = { "clang-format" },
