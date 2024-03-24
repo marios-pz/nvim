@@ -6,10 +6,8 @@ return {
         { "antosha417/nvim-lsp-file-operations", config = true },
     },
     config = function()
-        -- import lspconfig plugin
         local lspconfig = require("lspconfig")
 
-        -- import cmp-nvim-lsp plugin
         local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
         local keymap = vim.keymap -- for conciseness
@@ -37,7 +35,7 @@ return {
             keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts) -- see available code actions, in visual mode will apply to selection
 
             opts.desc = "Smart rename"
-            keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts) -- smart rename
+            keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts) -- smart renamehelm
 
             opts.desc = "Show buffer diagnostics"
             keymap.set("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", opts) -- show  diagnostics for file
@@ -81,6 +79,14 @@ return {
         lspconfig.tailwindcss.setup({
             capabilities = capabilities,
             on_attach = on_attach,
+        })
+
+        lspconfig.jdtls.setup({
+            capabilities = capabilities,
+            on_attach = function(client, buffer)
+                on_attach(client, buffer)
+                require("java").setup()
+            end,
         })
 
         lspconfig.svelte.setup({
@@ -209,7 +215,6 @@ return {
         })
 
         lspconfig.sqlls.setup({
-
             capabilities = capabilities,
             on_attach = on_attach,
         })

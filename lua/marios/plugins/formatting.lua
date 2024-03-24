@@ -22,7 +22,7 @@ return {
                 terraform = { "terraform_fmt" },
                 c = { "clang-format" },
                 cpp = { "clang-format" },
-                java = { "clang-format" },
+                -- java = { "clang-format" },
                 rust = { "rust-fmt" },
                 shell = { "beautysh" },
                 sh = { "beautysh" },

@@ -30,7 +30,6 @@ return {
                 "cssls",
                 "cssmodules_ls",
                 "unocss",
-                "ast_grep",
                 "als",
                 "tailwindcss",
                 -- Languages
@@ -47,6 +46,7 @@ return {
                 "vimls",
                 "golangci_lint_ls",
                 "gopls",
+                "checkstyle",
                 -- "arduino_language_server",
                 -- "asm_lsp",
 
@@ -73,7 +73,7 @@ return {
                 "prettier", -- prettier formatter
                 "stylua", -- lua formatter
                 "black", -- python formatter
-                "isort", -- format python imports 
+                "isort", -- format python imports
                 "eslint_d", -- js linter
                 "cpplint",
                 "cpptools",
