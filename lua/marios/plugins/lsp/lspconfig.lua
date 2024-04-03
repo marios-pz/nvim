@@ -1,6 +1,5 @@
 return {
     "neovim/nvim-lspconfig",
-    event = { "BufReadPre", "BufNewFile" },
     dependencies = {
         "hrsh7th/cmp-nvim-lsp",
         { "antosha417/nvim-lsp-file-operations", config = true },
@@ -85,7 +84,13 @@ return {
             capabilities = capabilities,
             on_attach = function(client, buffer)
                 on_attach(client, buffer)
-                require("java").setup()
+                -- require("java").setup()
+                -- TODO: Find a better way to format this shit
+                local opt = vim.opt -- for conciseness
+
+                -- tabs & indentation
+                opt.tabstop = 2
+                opt.shiftwidth = 2
             end,
         })
 

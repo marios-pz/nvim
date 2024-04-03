@@ -46,7 +46,6 @@ return {
                 "vimls",
                 "golangci_lint_ls",
                 "gopls",
-                "checkstyle",
                 -- "arduino_language_server",
                 -- "asm_lsp",
 
@@ -83,6 +82,7 @@ return {
                 "hadolint",
                 "go-debug-adapter",
                 "tflint",
+                "checkstyle",
             },
         })
     end,

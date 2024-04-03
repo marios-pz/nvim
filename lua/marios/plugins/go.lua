@@ -6,10 +6,10 @@ local settings = {
     disable_defaults = false, -- true|false when true set false to all boolean settings and replace all table
     -- settings with {}
     go = "go", -- go command, can be go[default] or go1.18beta1
-    goimport = "gopls", -- goimport command, can be gopls[default] or goimport
+    goimports = "gopls", -- goimport command, can be gopls[default] or goimport
     fillstruct = "gopls", -- can be nil (use fillstruct, slower) and gopls
     gofmt = "gofumpt", --gofmt cmd,
-    max_line_len = 100, -- max line length in golines format, Target maximum line length for golines
+    -- max_line_len = 100, -- max line length in golines format, Target maximum line length for golines
     tag_transform = false, -- can be transform option("snakecase", "camelcase", etc) check gomodifytags for details and more options
     gotests_template = "", -- sets gotests -template parameter (check gotests for details)
     gotests_template_dir = "", -- sets gotests -template_dir parameter (check gotests for details)
@@ -90,10 +90,12 @@ return {
     dependencies = { -- optional packages
         "ray-x/guihua.lua",
         "neovim/nvim-lspconfig",
+        "leoluz/nvim-dap-go",
     },
     event = { "CmdlineEnter" },
     ft = { "go", "gomod" },
     config = function()
         require("go").setup(settings)
+        require("dap-go").setup()
     end,
 }
