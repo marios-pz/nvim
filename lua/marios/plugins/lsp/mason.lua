@@ -48,6 +48,7 @@ return {
                 "gopls",
                 -- "arduino_language_server",
                 -- "asm_lsp",
+                "typst_lsp",
 
                 -- DevOps
                 "yamlls",
@@ -74,6 +75,7 @@ return {
                 "black", -- python formatter
                 "isort", -- format python imports
                 "eslint_d", -- js linter
+                "typstfmt",
                 "cpplint",
                 "cpptools",
                 "debugpy",

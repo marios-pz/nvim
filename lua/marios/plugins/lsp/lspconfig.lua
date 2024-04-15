@@ -80,6 +80,15 @@ return {
             on_attach = on_attach,
         })
 
+        lspconfig.typst_lsp.setup({
+            capabilities = capabilities,
+            on_attach = on_attach,
+            settings = {
+                exportPdf = "onType", -- Choose onType, onSave or never.
+                -- serverPath = "" -- Normally, there is no need to uncomment it.
+            },
+        })
+
         lspconfig.jdtls.setup({
             capabilities = capabilities,
             on_attach = function(client, buffer)
