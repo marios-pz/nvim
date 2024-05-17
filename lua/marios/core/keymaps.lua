@@ -8,12 +8,12 @@ local keymap = vim.keymap -- for conciseness
 
 keymap.set("n", "<leader>hh", "<cmd>Telescope keymaps<CR>", { desc = "Save" })
 
-keymap.set(
-    "n",
-    "<leader>tt",
-    "<cmd>ToggleTerm size=40 dir=~/Desktop direction=float name=desktop<CR>",
-    { desc = "Toggle ZenMode" }
-)
+-- keymap.set(
+--     "n",
+--     "<leader>tt",
+--     "<cmd>ToggleTerm size=40 dir=~/Desktop direction=float name=desktop<CR>",
+--     { desc = "Toggle ZenMode" }
+-- )
 
 keymap.set("n", "<leader>w", "<cmd>:w!<CR>", { desc = "Save" })
 keymap.set("n", "<leader>Q", "<cmd>:qa!<CR>", { desc = "Quit" })
