@@ -28,7 +28,6 @@ return {
                 --scope = 'cursor',
             },
         })
-
         cmp.setup({
             window = {
                 completion = cmp.config.window.bordered(),
@@ -40,6 +39,7 @@ return {
             snippet = { -- configure how nvim-cmp interacts with snippet engine
                 expand = function(args)
                     luasnip.lsp_expand(args.body)
+                    -- vim.snippet.expand(args.body)
                 end,
             },
             mapping = cmp.mapping.preset.insert({
