@@ -25,8 +25,8 @@ jobs:
 
       - name: Build the Docker image
         run: |
-          docker build . -t ghcr.io/mario-pz/nvim:latest
+          docker build . -t ghcr.io/${{ github.repository }}:latest
 
       - name: Push the Docker image
         run: |
-          docker push ghcr.io/mario-pz/nvim:latest
+          docker push ghcr.io/${{ github.repository }}:latest
