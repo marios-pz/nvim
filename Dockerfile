@@ -1,6 +1,6 @@
 FROM alpine:latest
 
-RUN apk --update --no-cache add neovim git python3 cargo go
+RUN apk --update --no-cache add neovim git python3 python3-dev cargo go npm luarocks
 
 RUN adduser -D nvimuser
 

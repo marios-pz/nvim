@@ -68,6 +68,9 @@ return {
             vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
         end
 
+        -- NOTE: visit below link to add stuff to lspconfig
+        -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+
         lspconfig.html.setup({
             capabilities = capabilities,
             on_attach = on_attach,
@@ -91,6 +94,17 @@ return {
                 -- serverPath = "" -- Normally, there is no need to uncomment it.
             },
         })
+
+        lspconfig.gitlab_ci_ls.setup({
+            capabilities = capabilities,
+            on_attach = on_attach,
+        })
+
+        -- TODO: add circle ci when it gets added,
+        -- lspconfig.circleci.setup({
+        --     capabilities = capabilities,
+        --     on_attach = on_attach,
+        -- })
 
         lspconfig.jdtls.setup({
             capabilities = capabilities,
@@ -254,6 +268,11 @@ return {
         lspconfig.clangd.setup({
             capabilities = capabilities,
             on_attach = on_attach,
+            config = function()
+                local opt = vim.opt
+                opt.tabstop = 8
+                opt.shiftwidth = 8
+            end,
         })
 
         lspconfig.gopls.setup({

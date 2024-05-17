@@ -45,6 +45,7 @@ return {
                 "vimls",
                 "golangci_lint_ls",
                 "gopls",
+                "emmet_ls",
                 -- "arduino_language_server",
                 -- "asm_lsp",
                 "typst_lsp",
@@ -62,6 +63,8 @@ return {
                 "jsonnet_ls",
                 "marksman",
                 "terraformls",
+                -- "circleci-yaml-language-server",
+                "gitlab_ci_ls",
             },
             -- auto-install configured servers (with lspconfig)
             automatic_installation = true, -- not the same as ensure_installed
@@ -69,26 +72,45 @@ return {
 
         mason_tool_installer.setup({
             ensure_installed = {
-                "prettier", -- prettier formatter
-                "stylua", -- lua formatter
-                "black", -- python formatter
-                "isort", -- format python imports
-                "eslint_d", -- js linter
-                "typstfmt",
+                -- BASE
+                "stylua",
+                "luacheck",
+
+                -- Shell
+                "beautysh",
+                "shellcheck",
+                "bash-debug-adapter",
+
+                -- C++
+                "clang-format",
                 "cpplint",
                 "cpptools",
+
+                -- Python
+                "black", -- python formatter
+                "isort", -- format python imports
                 "debugpy",
-                "jsonlint",
+
+                -- Golang
+                "go-debug-adapter",
+
+                -- WEB
+                "htmlhint",
+                "prettier",
+                "eslint_d", -- js linter
+
+                -- Other
+                "typstfmt",
+                "checkstyle",
+
+                -- DevOps
+                "actionlint",
                 "ansible-lint",
+                "jsonlint",
                 "yamllint",
                 "yamlfmt",
-                "beautysh",
-                "luacheck",
-                "shellcheck",
                 "hadolint",
-                "go-debug-adapter",
                 "tflint",
-                "checkstyle",
             },
         })
     end,
