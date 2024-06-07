@@ -7,11 +7,10 @@ Clone the repo to .config directory in your HOME destination.
 ## Demo using docker
 
 ```
-docker run -it mario-pz/nvim:latest # or add a specific tag
+docker run -it ghcr.io/marios-pz/nvim:latest # or add a specific tag
 ```
 
 The image is a bit chonky because it needs a variety of components that are essential to install the plugins
-
 
 ## Note
 
