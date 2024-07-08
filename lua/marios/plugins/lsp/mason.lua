@@ -42,7 +42,6 @@ return {
 				"rust_analyzer",
 				"sqlls",
 				"jsonls",
-				"vimls",
 				"golangci_lint_ls",
 				"gopls",
 				"emmet_ls",
@@ -64,7 +63,6 @@ return {
 				"marksman",
 				"terraformls",
 				-- "circleci-yaml-language-server",
-				-- "gitlab_ci_ls",
 			},
 			-- auto-install configured servers (with lspconfig)
 			automatic_installation = true, -- not the same as ensure_installed
