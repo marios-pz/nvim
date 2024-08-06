@@ -39,30 +39,23 @@ return {
 				"html",
 				"jedi_language_server",
 				"tsserver",
-				"rust_analyzer",
 				"sqlls",
 				"jsonls",
 				"golangci_lint_ls",
 				"gopls",
 				"emmet_ls",
-				-- "arduino_language_server",
-				-- "asm_lsp",
 				"typst_lsp",
 
 				-- DevOps
 				"yamlls",
 				"ansiblels",
-				"azure_pipelines_ls",
 				"bashls",
 				"dockerls",
 				"docker_compose_language_service",
-				"gradle_ls",
-				"graphql",
 				"helm_ls",
 				"jsonnet_ls",
 				"marksman",
 				"terraformls",
-				-- "circleci-yaml-language-server",
 			},
 			-- auto-install configured servers (with lspconfig)
 			automatic_installation = true, -- not the same as ensure_installed
@@ -73,6 +66,7 @@ return {
 				-- BASE
 				"stylua",
 				"luacheck",
+				"gdtoolkit",
 
 				-- Shell
 				"beautysh",
