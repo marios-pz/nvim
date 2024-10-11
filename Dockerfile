@@ -8,6 +8,7 @@ USER nvimuser
 
 COPY . /home/nvimuser/.config/nvim
 
+
 WORKDIR /home/nvimuser
 
 CMD ["nvim"]

@@ -7,7 +7,7 @@ return {
 				style = "storm",
 			})
 			-- load the colorscheme here
-			--vim.cmd([[colorscheme tokyonight-storm]])
+			vim.cmd([[colorscheme tokyonight-storm]])
 		end,
 	},
 }

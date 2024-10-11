@@ -32,19 +32,19 @@ return {
 				"unocss",
 				"als",
 				"tailwindcss",
+
 				-- Languages
 				"clangd",
 				"cmake",
 				"lua_ls",
 				"html",
-				"jedi_language_server",
 				"tsserver",
 				"sqlls",
 				"jsonls",
-				"golangci_lint_ls",
 				"gopls",
 				"emmet_ls",
 				"typst_lsp",
+				"jedi_language_server",
 
 				-- DevOps
 				"yamlls",
@@ -67,6 +67,20 @@ return {
 				"stylua",
 				"luacheck",
 				"gdtoolkit",
+				"stylelint",
+				"golangci-lint",
+				"golines",
+				"gomodifytags",
+				"gotests",
+				"gotestsum",
+				"gofumpt",
+				"goimports",
+				"goimports-reviser",
+				"iferr",
+				"impl",
+				"json-to-struct",
+				"nilaway",
+				"sqlfluff",
 
 				-- Shell
 				"beautysh",
@@ -82,6 +96,7 @@ return {
 				"black", -- python formatter
 				"isort", -- format python imports
 				"debugpy",
+				"flake8",
 
 				-- Golang
 				"go-debug-adapter",
