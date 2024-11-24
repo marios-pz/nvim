@@ -1,17 +1,20 @@
+-- LSP servers and clients communicate what features they support through "capabilities".
+--  By default, Neovim support a subset of the LSP specification.
+--  With blink.cmp, Neovim has *more* capabilities which are communicated to the LSP servers.
+--  Explanation from TJ: https://youtu.be/m8C0Cq9Uv9o?t=1275
+--
+-- This can vary by config, but in-general for nvim-lspconfig:
 return {
 	"neovim/nvim-lspconfig",
 	dependencies = {
 		"hrsh7th/cmp-nvim-lsp",
+		"saghen/blink.cmp",
 		{ "antosha417/nvim-lsp-file-operations", config = true },
 	},
-	config = function()
+	config = function(_, opts)
 		local lspconfig = require("lspconfig")
 
-		local cmp_nvim_lsp = require("cmp_nvim_lsp")
-
 		local keymap = vim.keymap -- for conciseness
-
-		local opts = { noremap = true, silent = true }
 
 		local on_attach = function(_, bufnr)
 			opts.buffer = bufnr
@@ -59,9 +62,6 @@ return {
 			keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts) -- mapping to restart lsp if necessary
 		end
 
-		-- used to enable autocompletion (assign to every lsp server config)
-		local capabilities = cmp_nvim_lsp.default_capabilities()
-
 		-- Change the Diagnostic symbols in the sign column (gutter)
 		local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
 		for type, icon in pairs(signs) do
@@ -71,243 +71,185 @@ return {
 
 		-- NOTE: visit below link to add stuff to lspconfig
 		-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+		--
 
-		lspconfig.html.setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
-		})
-
-		lspconfig.cssls.setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
-		})
-
-		lspconfig.tailwindcss.setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
-		})
-
-		lspconfig.typst_lsp.setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
-			settings = {
-				exportPdf = "onType", -- Choose onType, onSave or never.
-				-- serverPath = "" -- Normally, there is no need to uncomment it.
+		local servers = {
+			html = {
+				on_attach = on_attach,
 			},
-		})
-
-		lspconfig.jdtls.setup({
-			capabilities = capabilities,
-			on_attach = function(client, buffer)
-				on_attach(client, buffer)
-				-- TODO: Find a better way to format this shit
-				local opt = vim.opt -- for conciseness
-
-				-- tabs & indentation
-				opt.tabstop = 2
-				opt.shiftwidth = 2
-			end,
-		})
-
-		lspconfig.svelte.setup({
-			capabilities = capabilities,
-			on_attach = function(client, bufnr)
-				on_attach(client, bufnr)
-
-				vim.api.nvim_create_autocmd("BufWritePost", {
-					pattern = { "*.js", "*.ts" },
-					callback = function(ctx)
-						if client.name == "svelte" then
-							client.notify("$/onDidChangeTsOrJsFile", { uri = ctx.file })
-						end
-					end,
-				})
-			end,
-		})
-
-		lspconfig.graphql.setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
-			filetypes = { "graphql", "gql", "svelte", "typescriptreact", "javascriptreact" },
-		})
-
-		lspconfig.emmet_ls.setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
-			filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" },
-		})
-
-		lspconfig.jedi_language_server.setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
-		})
-
-		lspconfig.lua_ls.setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
-			settings = { -- custom settings for lua
-				Lua = {
-					-- make the language server recognize "vim" global
-					diagnostics = {
-						globals = { "vim" },
-					},
-					workspace = {
-						-- make language server aware of runtime files
-						library = {
-							[vim.fn.expand("$VIMRUNTIME/lua")] = true,
-							[vim.fn.stdpath("config") .. "/lua"] = true,
-						},
-					},
-					-- turn off telemetry
-					telemetry = { enable = false },
-				},
+			cssls = {
+				on_attach = on_attach,
 			},
-		})
-
-		lspconfig.helm_ls.setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
-		})
-
-		lspconfig.bashls.setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
-		})
-
-		lspconfig.eslint.setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
-		})
-
-		lspconfig.jsonnet_ls.setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
-		})
-
-		lspconfig.jsonls.setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
-		})
-
-		lspconfig.postgres_lsp.setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
-		})
-
-		lspconfig.powershell_es.setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
-
-			-- bundle_path = 'c:/w/PowerShellEditorServices',
-		})
-
-		lspconfig.rust_analyzer.setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
-			settings = {
-				["rust-analyzer"] = {
-					diagnostics = {
-						enable = true,
-					},
-				},
+			tailwindcss = {
+				on_attach = on_attach,
 			},
-		})
-
-		lspconfig.yamlls.setup({
-
-			capabilities = capabilities,
-			on_attach = on_attach,
-		})
-
-		lspconfig.vimls.setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
-		})
-
-		lspconfig.terraform_lsp.setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
-		})
-
-		lspconfig.sqlls.setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
-		})
-
-		lspconfig.gradle_ls.setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
-		})
-
-		lspconfig.dockerls.setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
-		})
-
-		lspconfig.docker_compose_language_service.setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
-		})
-
-		lspconfig.clangd.setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
-			config = function()
-				local opt = vim.opt
-				opt.tabstop = 8
-				opt.shiftwidth = 8
-			end,
-		})
-
-		lspconfig.gopls.setup({
-
-			settings = {
-				filetypes = { "go", "gomod", "gohtmltmpl", "gotexttmpl" },
-				message_level = vim.lsp.protocol.MessageType.Error,
-				cmd = {
-					"gopls",
-					"-remote=auto",
-					"-remote.debug=:0",
-				},
-
+			typst_lsp = {
+				on_attach = on_attach,
 				settings = {
-					gopls = {
-						analyses = {
-							unusedparams = true,
-							unreachable = true,
-							nilness = true,
-							shadow = true,
-							unusedwrite = true,
-							useany = true,
-							unusedvariable = true,
-							nilfunc = true,
-							lostcancel = true,
+					exportPdf = "onType", -- Choose onType, onSave or never.
+					-- serverPath = "" -- Normally, there is no need to uncomment it.
+				},
+			},
+			jdtls = {
+				on_attach = function(client, buffer)
+					on_attach(client, buffer)
+					-- TODO: Find a better way to format this shit
+					local opt = vim.opt -- for conciseness
+
+					-- tabs & indentation
+					opt.tabstop = 2
+					opt.shiftwidth = 2
+				end,
+			},
+			svelte = {
+				on_attach = function(client, bufnr)
+					on_attach(client, bufnr)
+
+					vim.api.nvim_create_autocmd("BufWritePost", {
+						pattern = { "*.js", "*.ts" },
+						callback = function(ctx)
+							if client.name == "svelte" then
+								client.notify("$/onDidChangeTsOrJsFile", { uri = ctx.file })
+							end
+						end,
+					})
+				end,
+			},
+			graphql = {
+				on_attach = on_attach,
+				filetypes = { "graphql", "gql", "svelte", "typescriptreact", "javascriptreact" },
+			},
+			emmet_ls = {
+				on_attach = on_attach,
+				filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" },
+			},
+			jedi_language_server = {
+				on_attach = on_attach,
+			},
+			lua_ls = {
+				on_attach = on_attach,
+				settings = { -- custom settings for lua
+					Lua = {
+						-- make the language server recognize "vim" global
+						diagnostics = {
+							globals = { "vim" },
 						},
-						codelenses = {
-							generate = true, -- show the `go generate` lens.
-							gc_details = true, --  // Show a code lens toggling the display of gc's choices.
-							test = true,
-							tidy = true,
+						workspace = {
+							-- make language server aware of runtime files
+							library = {
+								[vim.fn.expand("$VIMRUNTIME/lua")] = true,
+								[vim.fn.stdpath("config") .. "/lua"] = true,
+							},
 						},
-						usePlaceholders = false,
-						completeUnimported = true,
-						staticcheck = true,
-						matcher = "fuzzy",
-						diagnosticsDelay = "500ms",
-						symbolMatcher = "FastFuzzy",
-						symbolStyle = "Dynamic", -- Dynamic, Full, Package
-						gofumpt = true, -- true, -- turn on for new repos, gofmpt is good but also create code turmoils
-						buildFlags = { "-tags", "integration" },
-						expandWorkspaceToModule = true,
-						hints = {
-							assignVariableTypes = true,
-							constantValues = true,
-							parameterNames = true,
-						},
-						-- buildFlags = {"-tags", "functional"}
+						-- turn off telemetry
+						telemetry = { enable = false },
 					},
 				},
 			},
-		})
+			helm_ls = {
+				on_attach = on_attach,
+			},
+			bashls = {
+				on_attach = on_attach,
+			},
+			eslint = {
+				on_attach = on_attach,
+			},
+			jsonnet_ls = {
+				on_attach = on_attach,
+			},
+			jsonls = {
+				on_attach = on_attach,
+			},
+			postgres_lsp = {
+				on_attach = on_attach,
+			},
+			rust_analyzer = {
+				on_attach = on_attach,
+				settings = {
+					["rust-analyzer"] = {
+						diagnostics = {
+							enable = true,
+						},
+					},
+				},
+			},
+			yamlls = {
+				on_attach = on_attach,
+			},
+			terraformls = {
+				on_attach = on_attach,
+			},
+			sqlls = {
+				on_attach = on_attach,
+			},
+			gradle_ls = {
+				on_attach = on_attach,
+			},
+			dockerls = {
+				on_attach = on_attach,
+			},
+			docker_compose_language_service = {
+				on_attach = on_attach,
+			},
+			clangd = {
+				on_attach = on_attach,
+			},
+			gopls = {
+				settings = {
+					filetypes = { "go", "gomod", "gohtmltmpl", "gotexttmpl" },
+					message_level = vim.lsp.protocol.MessageType.Error,
+					cmd = {
+						"gopls",
+						"-remote=auto",
+						"-remote.debug=:0",
+					},
+
+					settings = {
+						gopls = {
+							analyses = {
+								unusedparams = true,
+								unreachable = true,
+								nilness = true,
+								shadow = true,
+								unusedwrite = true,
+								useany = true,
+								unusedvariable = true,
+								nilfunc = true,
+								lostcancel = true,
+							},
+							codelenses = {
+								generate = true, -- show the `go generate` lens.
+								gc_details = true, --  // Show a code lens toggling the display of gc's choices.
+								test = true,
+								tidy = true,
+							},
+							usePlaceholders = false,
+							completeUnimported = true,
+							staticcheck = true,
+							matcher = "fuzzy",
+							diagnosticsDelay = "500ms",
+							symbolMatcher = "FastFuzzy",
+							symbolStyle = "Dynamic", -- Dynamic, Full, Package
+							gofumpt = true, -- true, -- turn on for new repos, gofmpt is good but also create code turmoils
+							buildFlags = { "-tags", "integration" },
+							expandWorkspaceToModule = true,
+							hints = {
+								assignVariableTypes = true,
+								constantValues = true,
+								parameterNames = true,
+							},
+							-- buildFlags = {"-tags", "functional"}
+						},
+					},
+				},
+			},
+		}
+
+		-- Load Capabilities and Setup server
+		for server, config in pairs(servers) do
+			config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
+			lspconfig[server].setup(config)
+		end
 	end,
 }

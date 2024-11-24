@@ -30,7 +30,6 @@ return {
 				"cssls",
 				"cssmodules_ls",
 				"unocss",
-				"als",
 				"tailwindcss",
 
 				-- Languages
@@ -38,7 +37,6 @@ return {
 				"cmake",
 				"lua_ls",
 				"html",
-				"tsserver",
 				"sqlls",
 				"jsonls",
 				"gopls",
