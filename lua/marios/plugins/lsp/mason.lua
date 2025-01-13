@@ -41,7 +41,7 @@ return {
 				"jsonls",
 				"gopls",
 				"emmet_ls",
-				"typst_lsp",
+				"tinymist",
 				"jedi_language_server",
 
 				-- DevOps

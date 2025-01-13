@@ -91,7 +91,7 @@ return {
 			tailwindcss = {
 				on_attach = on_attach,
 			},
-			typst_lsp = {
+			tinymist = {
 				on_attach = on_attach,
 				settings = {
 					exportPdf = "onType", -- Choose onType, onSave or never.
