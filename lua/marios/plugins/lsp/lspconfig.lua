@@ -13,6 +13,14 @@ return {
 	},
 	config = function(_, opts)
 		local lspconfig = require("lspconfig")
+		require("java").setup({
+			notifications = {
+				dap = true,
+			},
+			jdk = {
+				auto_install = false,
+			},
+		})
 
 		local keymap = vim.keymap -- for conciseness
 
@@ -91,15 +99,20 @@ return {
 				},
 			},
 			jdtls = {
-				on_attach = function(client, buffer)
-					on_attach(client, buffer)
-					-- TODO: Find a better way to format this shit
-					local opt = vim.opt -- for conciseness
-
-					-- tabs & indentation
-					opt.tabstop = 2
-					opt.shiftwidth = 2
-				end,
+				on_attach = on_attach,
+				settings = {
+					java = {
+						configuration = {
+							runtimes = {
+								{
+									name = "JavaSE-17",
+									path = os.getenv("JAVA_HOME") or "",
+									default = true,
+								},
+							},
+						},
+					},
+				},
 			},
 			svelte = {
 				on_attach = function(client, bufnr)
