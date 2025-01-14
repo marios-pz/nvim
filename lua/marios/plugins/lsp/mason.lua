@@ -34,7 +34,6 @@ return {
 
 				-- Languages
 				"clangd",
-				"cmake",
 				"lua_ls",
 				"html",
 				"sqlls",

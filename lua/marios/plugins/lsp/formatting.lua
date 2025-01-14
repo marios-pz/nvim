@@ -10,14 +10,11 @@ return {
 				html = { "prettier" },
 				css = { "prettier" },
 				javascript = { "prettier" },
-				typescript = { "prettier" },
 				javascriptreact = { "prettier" },
-				typescriptreact = { "prettier" },
 				json = { "prettier" },
 				svelte = { "prettier" },
 				yaml = { "prettier" },
 				markdown = { "prettier" },
-				graphql = { "prettier" },
 				lua = { "stylua" },
 				python = function(bufnr)
 					if require("conform").get_formatter_info("ruff_format", bufnr).available then
@@ -31,7 +28,6 @@ return {
 				c = { "clang-format" },
 				cpp = { "clang-format" },
 				java = { "google-java-format" },
-				rust = { "rustfmt", lsp_format = "fallback" },
 				shell = { "beautysh" },
 				sh = { "beautysh" },
 				sql = { "sqlfluff" },

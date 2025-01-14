@@ -128,10 +128,6 @@ return {
 					})
 				end,
 			},
-			graphql = {
-				on_attach = on_attach,
-				filetypes = { "graphql", "gql", "svelte", "typescriptreact", "javascriptreact" },
-			},
 			emmet_ls = {
 				on_attach = on_attach,
 				filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" },
@@ -176,16 +172,6 @@ return {
 			},
 			postgres_lsp = {
 				on_attach = on_attach,
-			},
-			rust_analyzer = {
-				on_attach = on_attach,
-				settings = {
-					["rust-analyzer"] = {
-						diagnostics = {
-							enable = true,
-						},
-					},
-				},
 			},
 			yamlls = {
 				on_attach = on_attach,
