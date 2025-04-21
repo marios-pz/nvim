@@ -12,7 +12,6 @@ return {
 		{ "antosha417/nvim-lsp-file-operations", config = true },
 	},
 	config = function(_, opts)
-		local lspconfig = require("lspconfig")
 		require("java").setup({
 			notifications = {
 				dap = true,
@@ -90,43 +89,12 @@ return {
 					},
 				},
 			},
-			svelte = {
-				on_attach = function(client, bufnr)
-					on_attach(client, bufnr)
 
-					vim.api.nvim_create_autocmd("BufWritePost", {
-						pattern = { "*.js", "*.ts" },
-						callback = function(ctx)
-							if client.name == "svelte" then
-								client.notify("$/onDidChangeTsOrJsFile", { uri = ctx.file })
-							end
-						end,
-					})
-				end,
-			},
 			emmet_ls = {
 				filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" },
 			},
 			jedi_language_server = {},
-			lua_ls = {
-				settings = { -- custom settings for lua
-					Lua = {
-						-- make the language server recognize "vim" global
-						diagnostics = {
-							globals = { "vim" },
-						},
-						workspace = {
-							-- make language server aware of runtime files
-							library = {
-								[vim.fn.expand("$VIMRUNTIME/lua")] = true,
-								[vim.fn.stdpath("config") .. "/lua"] = true,
-							},
-						},
-						-- turn off telemetry
-						telemetry = { enable = false },
-					},
-				},
-			},
+			lua_ls = {},
 			helm_ls = {},
 			bashls = {},
 			eslint = {},
@@ -141,61 +109,14 @@ return {
 			docker_compose_language_service = {},
 			clangd = {},
 			gdscript = {},
-			gopls = {
-				settings = {
-					filetypes = { "go", "gomod", "gohtmltmpl", "gotexttmpl" },
-					message_level = vim.lsp.protocol.MessageType.Error,
-					cmd = {
-						"gopls",
-						"-remote=auto",
-						"-remote.debug=:0",
-					},
-
-					settings = {
-						gopls = {
-							analyses = {
-								unusedparams = true,
-								unreachable = true,
-								nilness = true,
-								shadow = true,
-								unusedwrite = true,
-								useany = true,
-								unusedvariable = true,
-								nilfunc = true,
-								lostcancel = true,
-							},
-							codelenses = {
-								generate = true, -- show the `go generate` lens.
-								gc_details = true, --  // Show a code lens toggling the display of gc's choices.
-								test = true,
-								tidy = true,
-							},
-							usePlaceholders = false,
-							completeUnimported = true,
-							staticcheck = true,
-							matcher = "fuzzy",
-							diagnosticsDelay = "500ms",
-							symbolMatcher = "FastFuzzy",
-							symbolStyle = "Dynamic", -- Dynamic, Full, Package
-							gofumpt = true, -- true, -- turn on for new repos, gofmpt is good but also create code turmoils
-							buildFlags = { "-tags", "integration" },
-							expandWorkspaceToModule = true,
-							hints = {
-								assignVariableTypes = true,
-								constantValues = true,
-								parameterNames = true,
-							},
-							-- buildFlags = {"-tags", "functional"}
-						},
-					},
-				},
-			},
+			gopls = {},
 		}
 
 		-- Load Capabilities and Setup server
 		for server, config in pairs(servers) do
 			config.on_attach = on_attach
-			lspconfig[server].setup(config)
+			vim.lsp.enable(server)
+			-- lspconfig[server].setup(config)
 		end
 	end,
 }
