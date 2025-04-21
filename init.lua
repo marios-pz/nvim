@@ -1,2 +1,2 @@
-require("marios.core")
+require("marios.settings")
 require("marios.lazy")
