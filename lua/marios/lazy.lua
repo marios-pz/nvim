@@ -15,6 +15,7 @@ require("lazy").setup({
 	{ import = "marios.plugins" },
 	{ import = "marios.plugins.tools" },
 	{ import = "marios.plugins.extra" },
+	{ import = "marios.plugins.blink" },
 }, {
 	install = {
 		colorscheme = { "tokyonight-storm" },
