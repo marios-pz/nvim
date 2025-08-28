@@ -10,7 +10,6 @@ return {
 	-- build = 'cargo build --release',
 	-- If you use nix, you can build from source using latest nightly rust with:
 	-- build = 'nix run .#build-plugin',
-
 	---@module 'blink.cmp'
 	---@type blink.cmp.Config
 	opts = {
@@ -19,6 +18,19 @@ return {
 		-- 'enter' for mappings similar to 'super-tab' but with 'enter' to accept
 		-- See the full "keymap" documentation for information on defining your own keymap.
 		keymap = { preset = "default" },
+
+		completion = {
+			ghost_text = {
+				enabled = true,
+			},
+			menu = {
+				auto_show = true, -- true for now
+			},
+			documentation = {
+				auto_show = true,
+				auto_show_delay_ms = 500,
+			},
+		},
 
 		appearance = {
 			-- Sets the fallback highlight groups to nvim-cmp's highlight groups
