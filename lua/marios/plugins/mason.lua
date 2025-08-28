@@ -1,17 +1,12 @@
 return {
 	"williamboman/mason.nvim",
 	dependencies = {
-		"williamboman/mason-lspconfig.nvim",
+		"mason-org/mason-lspconfig.nvim",
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
 	},
 	config = function()
 		-- import mason
 		local mason = require("mason")
-
-		-- import mason-lspconfig
-		local mason_lspconfig = require("mason-lspconfig")
-
-		local mason_tool_installer = require("mason-tool-installer")
 
 		-- enable mason and configure icons
 		mason.setup({
@@ -19,29 +14,26 @@ return {
 				icons = {
 					package_installed = "✓",
 					package_pending = "➜",
-					package_uninstalled = "✗",
 				},
 			},
 		})
 
-		mason_lspconfig.setup({
-			ensure_installed = {
-				-- CSS
-				"cssls",
-				"cssmodules_ls",
-				"unocss",
-				"tailwindcss",
+		local mason_lspconfig = require("mason-lspconfig")
+		mason_lspconfig.setup({})
 
-				-- Languages
-				"clangd",
+		local tool_installer = require("mason-tool-installer")
+
+		tool_installer.setup({
+			ensure_installed = {
+				-- Lua
 				"lua_ls",
-				"html",
+				"stylua",
+				"luacheck",
+				"stylelint",
+
+				-- SQL
+				"sqlfluff",
 				"sqlls",
-				"jsonls",
-				"gopls",
-				"emmet_ls",
-				"tinymist",
-				"jedi_language_server",
 
 				-- DevOps
 				"yamlls",
@@ -52,19 +44,29 @@ return {
 				"helm_ls",
 				"jsonnet_ls",
 				"marksman",
-				"terraformls",
-			},
-			-- auto-install configured servers (with lspconfig)
-			automatic_installation = true, -- not the same as ensure_installed
-		})
 
-		mason_tool_installer.setup({
-			ensure_installed = {
-				-- BASE
-				"stylua",
-				"luacheck",
-				"gdtoolkit",
-				"stylelint",
+				-- Shell
+				"beautysh",
+				"shellcheck",
+				"bash-debug-adapter",
+
+				-- C++
+				-- "clangd",
+				-- "clang-format",
+				-- "cpplint",
+				-- "cpptools",
+
+				-- Python
+				"basedpyright",
+				"ruff",
+				"mypy",
+				"black", -- python formatter
+				"isort", -- format python imports
+				"debugpy",
+
+				-- Golang
+				"gopls",
+				"go-debug-adapter",
 				"golangci-lint",
 				"golines",
 				"gomodifytags",
@@ -77,35 +79,20 @@ return {
 				"impl",
 				"json-to-struct",
 				"nilaway",
-				"sqlfluff",
-
-				-- Shell
-				"beautysh",
-				"shellcheck",
-				"bash-debug-adapter",
-
-				-- C++
-				"clang-format",
-				"cpplint",
-				"cpptools",
-
-				-- Python
-				"black", -- python formatter
-				"isort", -- format python imports
-				"debugpy",
-				"flake8",
-
-				-- Golang
-				"go-debug-adapter",
 
 				-- WEB
+				"html",
 				"htmlhint",
 				"prettier",
 				"eslint_d", -- js linter
+				"cssls",
+				"tailwindcss",
+				"jsonls",
+				"emmet_ls",
 
-				-- Other
+				-- Typst
+				"tinymist",
 				"typstfmt",
-				"checkstyle",
 
 				-- DevOps
 				"actionlint",
@@ -114,7 +101,9 @@ return {
 				"yamllint",
 				"yamlfmt",
 				"hadolint",
+				"terraformls",
 				"tflint",
+				"tfsec",
 			},
 		})
 	end,

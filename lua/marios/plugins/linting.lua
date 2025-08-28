@@ -7,7 +7,7 @@ return {
 			javascript = { "eslint_d" },
 			javascriptreact = { "eslint_d" },
 			svelte = { "eslint_d" },
-			python = { "flake8" },
+			python = { "mypy" },
 			dockerfile = { "hadolint" },
 			c = { "cpplint" },
 			cpp = { "cpplint" },

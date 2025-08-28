@@ -12,15 +12,6 @@ return {
 		{ "antosha417/nvim-lsp-file-operations", config = true },
 	},
 	config = function(_, opts)
-		require("java").setup({
-			notifications = {
-				dap = true,
-			},
-			jdk = {
-				auto_install = false,
-			},
-		})
-
 		local keymap = vim.keymap -- for conciseness
 
 		local on_attach = function(_, bufnr)
@@ -74,26 +65,11 @@ return {
 					-- serverPath = "" -- Normally, there is no need to uncomment it.
 				},
 			},
-			jdtls = {
-				settings = {
-					java = {
-						configuration = {
-							runtimes = {
-								{
-									name = "JavaSE-17",
-									path = os.getenv("JAVA_HOME") or "",
-									default = true,
-								},
-							},
-						},
-					},
-				},
-			},
 
 			emmet_ls = {
 				filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" },
 			},
-			jedi_language_server = {},
+			basedpyright = {},
 			lua_ls = {},
 			helm_ls = {},
 			bashls = {},
@@ -111,12 +87,12 @@ return {
 			gdscript = {},
 			gopls = {},
 		}
-
+		local lspconfig = require("lspconfig")
 		-- Load Capabilities and Setup server
 		for server, config in pairs(servers) do
 			config.on_attach = on_attach
-			vim.lsp.enable(server)
-			-- lspconfig[server].setup(config)
+			config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
+			lspconfig[server].setup(config)
 		end
 	end,
 }
