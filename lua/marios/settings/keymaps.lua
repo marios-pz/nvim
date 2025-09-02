@@ -8,12 +8,10 @@ local keymap = vim.keymap -- for conciseness
 
 keymap.set("n", "<leader>hh", "<cmd>Telescope keymaps<CR>", { desc = "Save" })
 
--- keymap.set(
---     "n",
---     "<leader>tt",
---     "<cmd>ToggleTerm size=40 dir=~/Desktop direction=float name=desktop<CR>",
---     { desc = "Toggle ZenMode" }
--- )
+vim.keymap.set("n", "<leader>tt", function()
+	local dir = vim.fn.expand("%:p:h") -- current file’s directory
+	vim.cmd("ToggleTerm size=40 dir=" .. dir .. " direction=float name=current_dir")
+end, { desc = "ToggleTerm in file dir" })
 
 keymap.set("n", "<leader>w", "<cmd>:w!<CR>", { desc = "Save" })
 keymap.set("n", "<leader>Q", "<cmd>:qa!<CR>", { desc = "Quit" })

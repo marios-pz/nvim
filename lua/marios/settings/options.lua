@@ -4,6 +4,7 @@ local opt = vim.opt -- for conciseness
 opt.relativenumber = true -- show relative line numbers
 opt.number = true -- shows absolute line number on cursor line (when relative number is on)
 
+opt.undofile = true -- keep history when closing session
 -- tabs & indentation
 opt.tabstop = 4
 opt.shiftwidth = 4
