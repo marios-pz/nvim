@@ -1,7 +1,7 @@
 return {
 	"williamboman/mason.nvim",
 	dependencies = {
-		"mason-org/mason-lspconfig.nvim",
+		-- "mason-org/mason-lspconfig.nvim",
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
 	},
 	config = function()
@@ -18,15 +18,15 @@ return {
 			},
 		})
 
-		local mason_lspconfig = require("mason-lspconfig")
-		mason_lspconfig.setup({})
+		-- local mason_lspconfig = require("mason-lspconfig")
+		-- mason_lspconfig.setup({})
 
 		local tool_installer = require("mason-tool-installer")
 
 		tool_installer.setup({
 			ensure_installed = {
 				-- Lua
-				"lua_ls",
+				"lua-language-server",
 				"stylua",
 				"luacheck",
 				"stylelint",
@@ -36,13 +36,13 @@ return {
 				"sqlls",
 
 				-- DevOps
-				"yamlls",
-				"ansiblels",
-				"bashls",
-				"dockerls",
-				"docker_compose_language_service",
-				"helm_ls",
-				"jsonnet_ls",
+				"yaml-language-server",
+				"ansible-language-server",
+				"bash-language-server",
+				"docker-language-server",
+				"docker-compose-language-service",
+				"helm-ls",
+				"jsonnet-language-server",
 				"marksman",
 
 				-- Shell
@@ -81,14 +81,15 @@ return {
 				"nilaway",
 
 				-- WEB
-				"html",
+				"html-lsp",
+				"htmx-lsp",
 				"htmlhint",
 				"prettier",
 				"eslint_d", -- js linter
-				"cssls",
-				"tailwindcss",
-				"jsonls",
-				"emmet_ls",
+				"css-lsp",
+				"tailwindcss-language-server",
+				"json-lsp",
+				"emmet-language-server",
 
 				-- Typst
 				"tinymist",
@@ -96,12 +97,14 @@ return {
 
 				-- DevOps
 				"actionlint",
+				"gh-actions-language-server",
 				"ansible-lint",
 				"jsonlint",
 				"yamllint",
 				"yamlfmt",
 				"hadolint",
-				"terraformls",
+				"terraform-ls",
+				-- terraform
 				"tflint",
 				"tfsec",
 			},

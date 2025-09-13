@@ -46,7 +46,9 @@ return {
 			-- TODO: is this the right place for it?
 			vim.lsp.inlay_hint.enable()
 			vim.o.winborder = "rounded"
-			vim.diagnostic.config({ virtual_text = true })
+			vim.diagnostic.config({
+				virtual_text = false,
+			})
 
 			opts.desc = "Restart LSP"
 			keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts) -- mapping to restart lsp if necessary
