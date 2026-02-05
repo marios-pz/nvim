@@ -12,7 +12,7 @@ return {
 	},
 	config = function(_, opts)
 		local keymap = vim.keymap -- for conciseness
-
+		local icons = require("marios.settings.icons")
 		local on_attach = function(_, bufnr)
 			opts.buffer = bufnr
 			-- set keybinds
@@ -48,6 +48,18 @@ return {
 			vim.o.winborder = "rounded"
 			vim.diagnostic.config({
 				virtual_text = false,
+				signs = {
+					text = {
+						[vim.diagnostic.severity.ERROR] = icons.diagnostic.error,
+						[vim.diagnostic.severity.WARN] = icons.diagnostic.warn,
+					},
+					linehl = {
+						[vim.diagnostic.severity.ERROR] = "ErrorMsg",
+					},
+					numhl = {
+						[vim.diagnostic.severity.WARN] = "WarningMsg",
+					},
+				},
 			})
 
 			opts.desc = "Restart LSP"
@@ -71,7 +83,20 @@ return {
 				filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" },
 			},
 			basedpyright = {},
-			lua_ls = {},
+			lua_ls = {
+				settings = {
+					Lua = {
+						telemetry = { enable = false },
+						runtime = { version = "LuaJIT" },
+						diagnostics = { globals = { "vim" } },
+						workspace = {
+							checkThirdParty = false,
+							library = vim.api.nvim_get_runtime_file("", true), -- This will slow down initial load
+						},
+						hint = { enable = true },
+					},
+				},
+			},
 			helm_ls = {},
 			bashls = {},
 			eslint = {},
@@ -92,8 +117,8 @@ return {
 		-- Load Capabilities and Setup server
 		for server, config in pairs(servers) do
 			config.on_attach = on_attach
-			config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
-			lspconfig[server].setup(config)
+			vim.lsp.config(server, config)
+			vim.lsp.enable(server)
 		end
 	end,
 }
