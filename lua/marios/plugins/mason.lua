@@ -93,7 +93,7 @@ return {
 
 				-- Typst
 				"tinymist",
-				"typstfmt",
+				"prettypst",
 
 				-- DevOps
 				"actionlint",
