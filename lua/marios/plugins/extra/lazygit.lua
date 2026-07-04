@@ -1,7 +1,4 @@
-return {
-	"kdheepak/lazygit.nvim",
-	dependencies = {
-		"nvim-lua/plenary.nvim",
-	},
-	config = function() end,
-}
+vim.pack.add({
+	"https://github.com/nvim-lua/plenary.nvim",
+	"https://github.com/kdheepak/lazygit.nvim",
+})

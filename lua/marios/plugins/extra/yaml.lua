@@ -1,8 +1,4 @@
-return {
-	"cuducos/yaml.nvim",
-	ft = { "yaml" }, -- optional
-	dependencies = {
-		"nvim-treesitter/nvim-treesitter",
-		"nvim-telescope/telescope.nvim", -- optional
-	},
-}
+vim.pack.add({
+	"https://github.com/nvim-telescope/telescope.nvim",
+	"https://github.com/cuducos/yaml.nvim",
+})

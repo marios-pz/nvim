@@ -1,26 +1,22 @@
-return {
-	"nvim-lualine/lualine.nvim",
-	dependencies = { "nvim-tree/nvim-web-devicons" },
-	config = function()
-		local lualine = require("lualine")
-		local lazy_status = require("lazy.status") -- to configure lazy pending updates count
+vim.pack.add({
+	"https://github.com/nvim-tree/nvim-web-devicons",
+	"https://github.com/cuducos/yaml.nvim",
+	"https://github.com/nvim-lualine/lualine.nvim",
+})
 
-		-- configure lualine with modified theme
-		--
-		lualine.setup({
-			sections = {
-				lualine_x = {
-					{
-						require("yaml_nvim").get_yaml_key_and_value,
-						lazy_status.updates,
-						cond = lazy_status.has_updates,
-						color = { fg = "#ff9e64" },
-					},
-					{ "encoding" },
-					{ "fileformat" },
-					{ "filetype" },
-				},
+local lualine = require("lualine")
+
+-- configure lualine with modified theme
+lualine.setup({
+	sections = {
+		lualine_x = {
+			{
+				require("yaml_nvim").get_yaml_key_and_value,
+				color = { fg = "#ff9e64" },
 			},
-		})
-	end,
-}
+			{ "encoding" },
+			{ "fileformat" },
+			{ "filetype" },
+		},
+	},
+})

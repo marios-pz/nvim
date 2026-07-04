@@ -1,9 +1,5 @@
-return {
-	"kaarmu/typst.vim",
-	ft = "typst",
-	lazy = false,
+vim.pack.add({
+	"https://github.com/kaarmu/typst.vim",
+})
 
-	config = function()
-		vim.g.typst_pdf_viewer = "zathura"
-	end,
-}
+vim.g.typst_pdf_viewer = "zathura"

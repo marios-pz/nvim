@@ -1,113 +1,110 @@
-return {
-	"williamboman/mason.nvim",
-	dependencies = {
-		-- "mason-org/mason-lspconfig.nvim",
-		"WhoIsSethDaniel/mason-tool-installer.nvim",
+vim.pack.add({
+	"https://github.com/williamboman/mason.nvim",
+	-- "https://github.com/mason-org/mason-lspconfig.nvim",
+	"https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim",
+})
+
+-- import mason
+local mason = require("mason")
+
+-- enable mason and configure icons
+mason.setup({
+	ui = {
+		icons = {
+			package_installed = "✓",
+			package_pending = "➜",
+		},
 	},
-	config = function()
-		-- import mason
-		local mason = require("mason")
+})
 
-		-- enable mason and configure icons
-		mason.setup({
-			ui = {
-				icons = {
-					package_installed = "✓",
-					package_pending = "➜",
-				},
-			},
-		})
+-- local mason_lspconfig = require("mason-lspconfig")
+-- mason_lspconfig.setup({})
 
-		-- local mason_lspconfig = require("mason-lspconfig")
-		-- mason_lspconfig.setup({})
+local tool_installer = require("mason-tool-installer")
 
-		local tool_installer = require("mason-tool-installer")
+tool_installer.setup({
+	ensure_installed = {
+		-- Lua
+		"lua-language-server",
+		"stylua",
+		"luacheck",
+		"stylelint",
 
-		tool_installer.setup({
-			ensure_installed = {
-				-- Lua
-				"lua-language-server",
-				"stylua",
-				"luacheck",
-				"stylelint",
+		-- SQL
+		"sqlfluff",
+		"sqlls",
 
-				-- SQL
-				"sqlfluff",
-				"sqlls",
+		-- DevOps
+		"yaml-language-server",
+		"ansible-language-server",
+		"bash-language-server",
+		"docker-language-server",
+		"docker-compose-language-service",
+		"helm-ls",
+		"jsonnet-language-server",
+		"marksman",
 
-				-- DevOps
-				"yaml-language-server",
-				"ansible-language-server",
-				"bash-language-server",
-				"docker-language-server",
-				"docker-compose-language-service",
-				"helm-ls",
-				"jsonnet-language-server",
-				"marksman",
+		-- Shell
+		"beautysh",
+		"shellcheck",
+		"bash-debug-adapter",
 
-				-- Shell
-				"beautysh",
-				"shellcheck",
-				"bash-debug-adapter",
+		-- C++
+		-- "clangd",
+		-- "clang-format",
+		-- "cpplint",
+		-- "cpptools",
 
-				-- C++
-				-- "clangd",
-				-- "clang-format",
-				-- "cpplint",
-				-- "cpptools",
+		-- Python
+		"basedpyright",
+		"ruff",
+		"mypy",
+		"black", -- python formatter
+		"isort", -- format python imports
+		"debugpy",
 
-				-- Python
-				"basedpyright",
-				"ruff",
-				"mypy",
-				"black", -- python formatter
-				"isort", -- format python imports
-				"debugpy",
+		-- Golang
+		"gopls",
+		"go-debug-adapter",
+		"golangci-lint",
+		"golines",
+		"gomodifytags",
+		"gotests",
+		"gotestsum",
+		"gofumpt",
+		"goimports",
+		"goimports-reviser",
+		"iferr",
+		"impl",
+		"json-to-struct",
+		"nilaway",
 
-				-- Golang
-				"gopls",
-				"go-debug-adapter",
-				"golangci-lint",
-				"golines",
-				"gomodifytags",
-				"gotests",
-				"gotestsum",
-				"gofumpt",
-				"goimports",
-				"goimports-reviser",
-				"iferr",
-				"impl",
-				"json-to-struct",
-				"nilaway",
+		-- WEB
+		"html-lsp",
+		"htmx-lsp",
+		"htmlhint",
+		"prettier",
+		"eslint_d", -- js linter
+		"css-lsp",
+		"tailwindcss-language-server",
+		"json-lsp",
+		"emmet-language-server",
 
-				-- WEB
-				"html-lsp",
-				"htmx-lsp",
-				"htmlhint",
-				"prettier",
-				"eslint_d", -- js linter
-				"css-lsp",
-				"tailwindcss-language-server",
-				"json-lsp",
-				"emmet-language-server",
+		-- Typst
+		"tinymist",
+		"prettypst",
 
-				-- Typst
-				"tinymist",
-				"prettypst",
-
-				-- DevOps
-				"actionlint",
-				"gh-actions-language-server",
-				"ansible-lint",
-				"jsonlint",
-				"yamllint",
-				"yamlfmt",
-				"hadolint",
-				"terraform-ls",
-				-- terraform
-				"tflint",
-				"tfsec",
-			},
-		})
-	end,
-}
+		-- DevOps
+		"actionlint",
+		"gh-actions-language-server",
+		"ansible-lint",
+		"jsonlint",
+		"yamllint",
+		"yamlfmt",
+		"hadolint",
+		"terraform-ls",
+		-- terraform
+		"tflint",
+		"tfsec",
+	},
+})

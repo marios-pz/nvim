@@ -1,2 +1,2 @@
 require("marios.settings")
-require("marios.lazy")
+require("marios.pack")

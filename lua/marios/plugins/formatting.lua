@@ -1,50 +1,50 @@
-return {
-	"stevearc/conform.nvim",
-	event = { "BufWritePre" },
-	cmd = { "ConformInfo" },
-	config = function()
-		local conform = require("conform")
+vim.pack.add({
+	"https://github.com/stevearc/conform.nvim",
+})
 
-		conform.setup({
-			formatters_by_ft = {
-				html = { "prettier" },
-				css = { "prettier" },
-				javascript = { "prettier" },
-				javascriptreact = { "prettier" },
-				json = { "prettier" },
-				svelte = { "prettier" },
-				yaml = { "prettier" },
-				markdown = { "prettier" },
-				lua = { "stylua" },
-				python = function(bufnr)
-					if require("conform").get_formatter_info("ruff_format", bufnr).available then
-						return { "ruff_format" }
-					else
-						return { "isort", "black" }
-					end
-				end,
-				go = { "goimports", "gofmt" },
-				terraform = { "terraform_fmt" },
-				c = { "clang-format" },
-				cpp = { "clang-format" },
-				java = { "google-java-format" },
-				shell = { "beautysh" },
-				sh = { "beautysh" },
-				sql = { "sqlfluff" },
-			},
+local conform = require("conform")
 
-			format_on_save = {
-				-- I recommend these options. See :help conform.format for details.
-				lsp_format = "fallback",
-				timeout_ms = 500,
-			},
-			format_after_save = {
-				lsp_format = "fallback",
-			},
-			-- Conform will notify you when a formatter errors
-			notify_on_error = false,
-			-- Conform will notify you when no formatters are available for the buffer
-			notify_no_formatters = true,
-		})
-	end,
-}
+conform.setup({
+	formatters_by_ft = {
+		hcl = { "packer_fmt" },
+		terraform = { "terraform_fmt" },
+		tf = { "terraform_fmt" },
+		["terraform-vars"] = { "terraform_fmt" },
+		html = { "prettier" },
+		css = { "prettier" },
+		javascript = { "prettier" },
+		javascriptreact = { "prettier" },
+		json = { "prettier" },
+		svelte = { "prettier" },
+		yaml = { "prettier" },
+		markdown = { "prettier" },
+		lua = { "stylua" },
+		python = function(bufnr)
+			if require("conform").get_formatter_info("ruff_format", bufnr).available then
+				return { "ruff_format" }
+			else
+				return { "isort", "black" }
+			end
+		end,
+		go = { "goimports", "gofmt" },
+		c = { "clang-format" },
+		cpp = { "clang-format" },
+		java = { "google-java-format" },
+		shell = { "beautysh" },
+		sh = { "beautysh" },
+		sql = { "sqlfluff" },
+	},
+
+	format_on_save = {
+		-- I recommend these options. See :help conform.format for details.
+		lsp_format = "fallback",
+		timeout_ms = 500,
+	},
+	format_after_save = {
+		lsp_format = "fallback",
+	},
+	-- Conform will notify you when a formatter errors
+	notify_on_error = false,
+	-- Conform will notify you when no formatters are available for the buffer
+	notify_no_formatters = true,
+})

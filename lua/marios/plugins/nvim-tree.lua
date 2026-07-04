@@ -1,56 +1,55 @@
-return {
-	"nvim-tree/nvim-tree.lua",
-	dependencies = { "nvim-tree/nvim-web-devicons" },
-	config = function()
-		local nvimtree = require("nvim-tree")
-		local keymap = vim.keymap
+vim.pack.add({
+	"https://github.com/nvim-tree/nvim-web-devicons",
+	"https://github.com/nvim-tree/nvim-tree.lua",
+})
 
-		-- recommended settings from nvim-tree documentation
-		vim.g.loaded_netrw = 1
-		vim.g.loaded_netrwPlugin = 1
+local nvimtree = require("nvim-tree")
+local keymap = vim.keymap
 
-		-- change color for arrows in tree to light blue
-		vim.cmd([[ highlight NvimTreeFolderArrowClosed guifg=#3FC5FF ]])
-		vim.cmd([[ highlight NvimTreeFolderArrowOpen guifg=#3FC5FF ]])
+-- recommended settings from nvim-tree documentation
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 
-		-- configure nvim-tree
-		nvimtree.setup({
-			view = {
-				width = 35,
-				relativenumber = true,
-			},
-			-- change folder arrow icons
-			renderer = {
-				indent_markers = {
-					enable = true,
-				},
-				icons = {
-					glyphs = {
-						folder = {
-							arrow_closed = "", -- arrow when folder is closed
-							arrow_open = "", -- arrow when folder is open
-						},
-					},
-				},
-			},
-			-- disable window_picker for
-			-- explorer to work well with
-			-- window splits
-			actions = {
-				open_file = {
-					window_picker = {
-						enable = false,
-					},
+-- change color for arrows in tree to light blue
+vim.cmd([[ highlight NvimTreeFolderArrowClosed guifg=#3FC5FF ]])
+vim.cmd([[ highlight NvimTreeFolderArrowOpen guifg=#3FC5FF ]])
+
+-- configure nvim-tree
+nvimtree.setup({
+	view = {
+		width = 35,
+		relativenumber = true,
+	},
+	-- change folder arrow icons
+	renderer = {
+		indent_markers = {
+			enable = true,
+		},
+		icons = {
+			glyphs = {
+				folder = {
+					arrow_closed = "", -- arrow when folder is closed
+					arrow_open = "", -- arrow when folder is open
 				},
 			},
-			filters = {
-				custom = { ".DS_Store" },
+		},
+	},
+	-- disable window_picker for
+	-- explorer to work well with
+	-- window splits
+	actions = {
+		open_file = {
+			window_picker = {
+				enable = false,
 			},
-			git = {
-				ignore = false,
-			},
-		})
+		},
+	},
+	filters = {
+		custom = { ".DS_Store" },
+	},
+	git = {
+		ignore = false,
+	},
+})
 
-		keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle Tree" })
-	end,
-}
+keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle Tree" })

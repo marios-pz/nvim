@@ -1,4 +1,3 @@
-return {
-	"sindrets/diffview.nvim",
-	event = "VeryLazy",
-}
+vim.pack.add({
+	"https://github.com/sindrets/diffview.nvim",
+})
