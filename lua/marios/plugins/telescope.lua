@@ -3,6 +3,8 @@ vim.pack.add({
 	"https://github.com/nvim-lua/plenary.nvim",
 	"https://github.com/nvim-telescope/telescope-fzf-native.nvim",
 	"https://github.com/nvim-tree/nvim-web-devicons",
+	"https://github.com/cappyzawa/telescope-terraform.nvim",
+	"https://github.com/ANGkeith/telescope-terraform-doc.nvim",
 })
 
 local telescope = require("telescope")
@@ -22,6 +24,8 @@ telescope.setup({
 })
 
 telescope.load_extension("fzf")
+telescope.load_extension("terraform")
+telescope.load_extension("terraform_doc")
 
 -- set keymaps
 local keymap = vim.keymap -- for conciseness

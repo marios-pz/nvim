@@ -146,6 +146,14 @@
       "rev": "b25b749b9db64d375d782094e2b9dce53ad53a40",
       "src": "https://github.com/nvim-telescope/telescope-fzf-native.nvim"
     },
+    "telescope-terraform-doc.nvim": {
+      "rev": "66987fac94d12704fdfd90b857f4f648e31251c9",
+      "src": "https://github.com/ANGkeith/telescope-terraform-doc.nvim"
+    },
+    "telescope-terraform.nvim": {
+      "rev": "072c97023797ca1a874668aaa6ae0b74425335df",
+      "src": "https://github.com/cappyzawa/telescope-terraform.nvim"
+    },
     "telescope.nvim": {
       "rev": "427b576c16792edad01a92b89721d923c19ad60f",
       "src": "https://github.com/nvim-telescope/telescope.nvim"
