@@ -162,11 +162,6 @@
       "rev": "31e3c38ce9b29781e4422fc0322eb0a21f4e8668",
       "src": "https://github.com/folke/todo-comments.nvim"
     },
-    "toggleterm.nvim": {
-      "rev": "50ea089fc548917cc3cc16b46a8211833b9e3c7c",
-      "src": "https://github.com/akinsho/toggleterm.nvim",
-      "version": ">=0.0.0"
-    },
     "tokyonight.nvim": {
       "rev": "cdc07ac78467a233fd62c493de29a17e0cf2b2b6",
       "src": "https://github.com/folke/tokyonight.nvim"
